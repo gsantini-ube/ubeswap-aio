@@ -1,0 +1,12 @@
+.footer {
+    &-wrapper {
+        // background-color: var(--dark-blue);
+        background-color: #2C2F36;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 8px 1rem;
+        border-top: 1px solid #0e1f3a;
+    }
+}

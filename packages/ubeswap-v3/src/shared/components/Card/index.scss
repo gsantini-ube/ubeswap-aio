@@ -1,0 +1,11 @@
+.card-wrapper {
+  position: relative;
+  background-color: #2C2F369e;
+  backdrop-filter: blur(6px);
+}
+.dark {
+  background-color: var(--dark-ebony-clay);
+}
+.light {
+  background-color: var(--ebony-clay);
+}

@@ -1,0 +1,33 @@
+.app-body {
+    position: absolute;
+    top: 68px;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 500px) {
+    .app-body {
+        padding-top: 2.5rem !important;
+        padding-bottom: 3rem !important;
+    }
+}
+
+html {
+    font-size: 16px;
+    font-variant: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    background: #121319;
+    font-feature-settings: 'ss01' on, 'ss02' on, 'cv01' on, 'cv03' on;
+    background-repeat: no-repeat, repeat;
+    /* background-size: contain; */
+    background-origin: padding-box, padding-box;
+    background-clip: border-box, border-box;
+    background-attachment: fixed;
+    background-image: url("../assets/images/background-pool.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

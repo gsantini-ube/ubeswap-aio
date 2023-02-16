@@ -1,0 +1,173 @@
+.header {
+
+  &__wrapper {
+    background-color: var(--dark-blue);
+    border-bottom: 1px solid #0e1f3a;
+  }
+
+  &__logo {
+    width: 150px;
+
+    img {
+      width: inherit;
+    }
+  }
+
+  &__links {
+    position: absolute;
+    display: flex;
+    justify-self: center;
+    transform: translateX(-50%);
+    left: calc(50%);
+    padding: 0 16px;
+    overflow: visible;
+    align-items: center;
+
+    &__link {
+      position: relative;
+      color: var(--light-gray);
+      margin: 0 .3rem;
+      padding: 30px 2rem;
+
+      &:hover {
+        color: var(--white);
+        opacity: 1 !important;
+      }
+
+      &--active {
+        cursor: default;
+        border-bottom: 1px solid var(--primary);
+        color: var(--primary);
+
+        &:hover, &:focus {
+          color: var(--primary);
+          opacity: 1 !important;
+        }
+      }
+    }
+    
+  }
+
+  &__account {
+    position: relative;
+    background: #041023;
+    margin-top: -1rem;
+    margin-bottom: -1rem;
+    border-radius: 0;
+    border-left: 1px solid #0e1f3a;
+    padding: 22px 1rem;
+  }
+
+}
+
+.preferences-menu{
+
+  &__inner {
+    position: absolute;
+    display: none;
+    z-index: 999999;
+    top: calc(100% + 1rem);
+    right: -1rem;
+    width: 270px;
+  }
+
+  &__toggler {
+    cursor: pointer;
+    padding: 6px;
+    transition-duration: .2s;
+    color: var(--white);
+    border: none;
+    background-color: transparent;
+    &:hover {
+      background-color: #091e3e;
+    }
+    outline: none;
+  }
+  
+  &__checkbox {
+    display: none;
+    &:checked {
+      & + .preferences-menu__toggler {
+          background-color: #091e3e;
+        & > .preferences-menu__inner {
+          display: block;
+        }
+      }
+    }
+  }
+
+}
+
+@media screen and (max-width: 960px) {
+
+  .header {
+
+    &__logo {
+      width: 100px;
+    }
+
+    &__wrapper {
+      position: fixed;
+      z-index: 99999999;
+    }
+
+    &__account {
+      position: unset;
+    }
+
+    &__links {
+      position: fixed;
+      flex-direction: row;
+      justify-content: center;
+      justify-self: center;
+      z-index: 99;
+      margin: 0 auto;
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      width: 95%;
+      overflow-x: scroll;
+      right: 0;
+      left: 0;
+      bottom: 33px;
+      width: 100%;
+      border-radius: 0;
+      background: #030b18;
+      transform: none;
+      border-top: 1px solid #0e1f3a;
+
+      &__link {
+        padding: 1rem;
+        &--active {
+          background-color: var(--primary);
+          color: var(--white);
+          &:focus {
+            color: var(--white);
+          }
+        }
+      }
+    }
+
+  }
+
+  .preferences-menu{
+
+    &__inner {
+      position: fixed;
+      left: 2rem;
+      top: 70px;
+      width: calc(100% - 1rem);
+    }
+  }
+
+
+}
+
+
+
+@media screen and (max-width: 720px) {
+
+}
+
+@media screen and (max-width: 500px) {
+
+}

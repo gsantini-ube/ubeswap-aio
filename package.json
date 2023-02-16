@@ -1,0 +1,21 @@
+{
+  "name": "ubeswap-aio",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/ubeswap-header",
+    "packages/ubeswap-v2",
+    "packages/ubeswap-v3"
+  ],
+  "scripts": {
+    "start": "npm run start --workspace=ubeswap-v2",
+    "start:v3": "npm run dev --workspace=ubeswap-v3",
+    "build:local": "npm run build:local --workspaces"
+  },
+  "devDependencies": {
+    "craco-babel-loader": "^1.0.4"
+  },
+  "dependencies": {
+    "craco-alias": "^3.0.1"
+  }
+}

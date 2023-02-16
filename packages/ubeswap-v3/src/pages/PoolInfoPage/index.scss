@@ -1,0 +1,48 @@
+.toolbar-btn {
+  background-color: transparent;
+  color: var(--white);
+  padding-bottom: 12px;
+  border-radius: 0;
+
+  &-title {
+    font-size: 12px;
+    color: #808490;
+  }
+
+  &:not(:last-of-type) {
+    margin-right: 1rem;
+  }
+
+  &.active {
+    border-bottom: 2px solid rgb(136, 120, 195);
+    color: rgb(136, 120, 195);
+  }
+}
+
+.info-chart {
+ 
+  &-wrapper {
+    background-color: var(--ebony-clay);
+  }
+
+  &__toolbar {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    padding: 12px 1rem 0 1rem;
+    border-radius: 12px 12px 0 0;
+    background-color: #182732;
+    border-bottom: 1px solid #293e4d;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .info-pool-header {
+    flex-direction: column;
+    text-align: start;
+    align-items: start;
+
+    &__pair {
+      font-size: 18px;
+    }
+  }
+}

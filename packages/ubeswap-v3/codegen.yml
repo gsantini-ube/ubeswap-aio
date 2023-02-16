@@ -1,0 +1,16 @@
+overrideExisting: true
+schema:
+  [
+      'https://dogechain-graph.algebra.finance/subgraphs/name/quickswap/dogechain-info',
+      'https://dogechain-graph.algebra.finance/subgraphs/name/quickswap/dogechain-farming',
+      'https://dogechain-graph.algebra.finance/subgraphs/name/quickswap/dogechain-blocklytics'
+  ]
+documents: 'src/**/!(*.d).{ts,tsx}'
+generates:
+  ./src/state/data/generated.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-rtk-query:
+          importBaseApiFrom: './slice'
+          exportHooks: true
