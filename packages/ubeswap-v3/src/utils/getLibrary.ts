@@ -1,9 +1,9 @@
 import { Web3Provider } from "@ethersproject/providers";
-import ms from "ms.macro";
+// import ms from "ms.macro";
 import AlgebraConfig from "../algebra.config";
 
 const NETWORK_POLLING_INTERVALS: { [chainId: number]: number } = {
-    [AlgebraConfig.CHAIN_PARAMS.chainId]: ms`1s`,
+    [AlgebraConfig.CHAIN_PARAMS.chainId]: 1000,
 };
 
 export default function getLibrary(provider: any): Web3Provider {

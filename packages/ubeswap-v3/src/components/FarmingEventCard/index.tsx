@@ -194,7 +194,7 @@ export function FarmingEventCard({
                         </div>
                         <div>
                             <Link
-                                to={"/farming/infinite-farms"}
+                                to={"/farm/infinite-farms"}
                                 className={"farming-event-card__infinite-farming-available"}
                                 style={{ padding: "6px 10px", borderRadius: "8px", color: "var(--white)", background: "var(--primary)" }}
                             >

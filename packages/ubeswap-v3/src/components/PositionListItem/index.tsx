@@ -140,7 +140,7 @@ export default function PositionListItem({ positionDetails, newestPosition, high
 
     const positionSummaryLink = `/pool/${positionDetails.tokenId}${_onFarming ? "?onFarming=true" : ""}`;
 
-    const farmingLink = `/farming/farms#${positionDetails.tokenId}`;
+    const farmingLink = `/farm/farms#${positionDetails.tokenId}`;
 
     const isNewest = newestPosition ? newestPosition === +positionDetails.tokenId : undefined;
 

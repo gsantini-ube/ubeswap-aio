@@ -1,8 +1,8 @@
 import { skipToken } from "@reduxjs/toolkit/query/react";
 import { Currency, CurrencyAmount } from "@uniswap/sdk-core";
-import ms from "ms.macro";
-import { useBlockNumber } from "../../state/application/hooks";
-import { useGetQuoteQuery } from "../../state/routing/slice";
+// import ms from "ms.macro";
+import { useBlockNumber } from "../state/application/hooks";
+import { useGetQuoteQuery } from "../state/routing/slice";
 import { useActiveWeb3React } from "./web3";
 
 export function useRouterTradeExactIn(amountIn?: CurrencyAmount<Currency>, currencyOut?: Currency) {
@@ -21,7 +21,7 @@ export function useRouterTradeExactIn(amountIn?: CurrencyAmount<Currency>, curre
                   type: "exactIn",
               }
             : skipToken,
-        { pollingInterval: ms`1s` }
+        { pollingInterval: 1000 }
     );
 
     // todo(judo): validate block number for freshness

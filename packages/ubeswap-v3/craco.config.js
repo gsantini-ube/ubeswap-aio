@@ -1,9 +1,19 @@
 const path = require("path");
+const { getLoader, loaderByName } = require("@craco/craco");
+
+const packages = [];
+packages.push(path.join(__dirname, "../ubeswap-header"));
 
 module.exports = {
     webpack: {
         configure: (config, { env, paths }) => {
             paths.appBuild = config.output.path = path.resolve("../../build/v3");
+
+            const { isFound, match } = getLoader(config, loaderByName("babel-loader"));
+            if (isFound) {
+                const include = Array.isArray(match.loader.include) ? match.loader.include : [match.loader.include];
+                match.loader.include = include.concat(packages);
+            }
 
             config.module.rules.push({
                 test: /\.tsx?$/,

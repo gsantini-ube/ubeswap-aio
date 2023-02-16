@@ -1,12 +1,7 @@
 {
-  "extends": "./tsconfig.path.json",
   "compilerOptions": {
     "target": "es2019",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -27,22 +22,10 @@
     "jsx": "react-jsx",
     "downlevelIteration": true,
     "allowSyntheticDefaultImports": true,
-    "types": [
-      "react-spring",
-      "jest"
-    ],
-    "typeRoots": [
-      "./node_modules/@types",
-      "src/*"
-    ],
+    "types": ["react-spring", "jest"],
+    "typeRoots": ["./node_modules/@types", "src/*"],
     "baseUrl": "src"
   },
-  "exclude": [
-    "node_modules"
-  ],
-  "include": [
-    "./src/**/*.ts",
-    "./src/**/*.tsx",
-    "src/components/Confetti/index.js"
-  ]
+  "exclude": ["node_modules"],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"]
 }

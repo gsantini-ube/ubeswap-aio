@@ -75,7 +75,7 @@ export function InfoPools({ data, fetchHandler, blocksFetched }: InfoPoolsProps)
                 const apr = el.apr > 0 ? <span style={{ color: "var(--green)" }}>{formatPercent(el.apr)}</span> : <span>-</span>;
                 const farming =
                     el.farmingApr > 0 ? (
-                        <NavLink to={`/farming/infinite-farms`} className={"farming-link"} data-apr={el.farmingApr > 0}>
+                        <NavLink to={`/farm/infinite-farms`} className={"farming-link"} data-apr={el.farmingApr > 0}>
                             {formatPercent(el.farmingApr)}
                         </NavLink>
                     ) : (

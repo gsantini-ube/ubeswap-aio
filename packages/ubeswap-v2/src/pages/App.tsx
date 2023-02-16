@@ -6,7 +6,6 @@ import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
 import { useDarkModeManager } from 'state/user/hooks'
 import styled from 'styled-components'
 import UbeswapHeader from 'ubeswap-header'
-import { FarmingPage } from 'ubeswap-v3'
 import { isBanned } from 'utils/isBannedUser'
 
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
@@ -14,7 +13,6 @@ import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsRepo
 import Polling from '../components/Header/Polling'
 import URLWarning from '../components/Header/URLWarning'
 import Popups from '../components/Popups'
-import { V3Url } from '../constants'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
 import { getMobileOperatingSystem, Mobile } from '../utils/mobile'
 import AddLiquidity from './AddLiquidity'
@@ -104,12 +102,20 @@ export default function App() {
     }
   }, [curLocation])
 
+  // const handleNavChange = (menu: string, version: number) => {
+  //   if (version === 2) {
+  //     const url = menu === 'logo' || menu === 'swap' ? '' : menu
+  //     history.push(`/${url}`)
+  //   } else {
+  //     location.href = `${V3Url}/#/${menu}`
+  //   }
+  // }
   const handleNavChange = (menu: string, version: number) => {
-    if (version === 2) {
-      const url = menu === 'logo' || menu === 'swap' ? '' : menu
-      history.push(`/${url}`)
-    } else {
-      location.href = `${V3Url}/#/${menu}`
+    const url = menu === 'logo' || menu === 'swap' ? '' : menu
+    if (version === 3) {
+      location.href = `/v3/#/${url}`
+    } else if (version === 2) {
+      location.href = `/#/${url}`
     }
   }
 
@@ -173,8 +179,6 @@ export default function App() {
               <Route exact strict path="/dualfarm/:currencyIdA/:currencyIdB/:stakingAddress" component={Manage} />
               <Route exact strict path="/stake" component={Stake} />
               <Route exact strict path="/add-proposal" component={AddProposal} />
-
-              <Route exact strict path="/v3/farm" component={FarmingPage} />
 
               <Route component={RedirectPathToSwapOnly} />
             </Switch>

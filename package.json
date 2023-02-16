@@ -8,9 +8,13 @@
     "packages/ubeswap-v3"
   ],
   "scripts": {
-    "start": "npm run start --workspace=ubeswap-v2",
+    "start": "npm run start:v2",
+    "start:v2": "npm run start --workspace=ubeswap-v2",
     "start:v3": "npm run dev --workspace=ubeswap-v3",
-    "build:local": "npm run build:local --workspaces"
+    "build": "npm run build:local",
+    "build:local": "npm run build:local:v2 && npm run build:local:v3",
+    "build:local:v2": "npm run build:local --workspace=ubeswap-v2",
+    "build:local:v3": "npm run build:local --workspace=ubeswap-v3"
   },
   "devDependencies": {
     "craco-babel-loader": "^1.0.4"

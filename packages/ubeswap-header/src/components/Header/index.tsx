@@ -9,7 +9,7 @@ import Drawer from 'rc-drawer'
 import React, { useEffect, useState } from 'react'
 import { Moon, Sun } from 'react-feather'
 import { useTranslation } from 'react-i18next'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Text } from 'rebass'
 import styled from 'styled-components'
 import { CountUp } from 'use-count-up'
@@ -32,9 +32,9 @@ import VersionToggleMenu from '../VersionToggleMenu'
 import Web3Status from '../Web3Status'
 import BridgeMenuGroup from './BridgeMenuGroup'
 import ChartsMenuGroup from './ChartsMenuGroup'
-import UbeBalanceContent from './UbeBalanceContent'
-import PoolMenuGroup from './PoolMenuGroup'
 import FarmMenuGroup from './FarmMenuGroup'
+import PoolMenuGroup from './PoolMenuGroup'
+import UbeBalanceContent from './UbeBalanceContent'
 
 const HeaderFrame = styled.div`
   display: grid;
@@ -707,7 +707,7 @@ export default function Header({
               {darkMode ? <Moon size={20} /> : <Sun size={20} />}
             </StyledMenuButton>
           )}
-          {showVersionToggleButton && (<VersionToggleMenu />)}
+          {showVersionToggleButton && <VersionToggleMenu />}
           <Menu onSend={() => menuItemClicked('send')} />
         </HeaderElementWrap>
       </HeaderControls>

@@ -6,7 +6,7 @@ import { useMemo } from "react";
 import computeSurroundingTicks from "../utils/computeSurroundingTicks";
 import { useAllV3TicksQuery } from "../state/data/enhanced";
 import { skipToken } from "@reduxjs/toolkit/query/react";
-import ms from "ms.macro";
+// import ms from "ms.macro";
 import { AllV3TicksQuery } from "../state/data/generated";
 
 const PRICE_FIXED_DIGITS = 8;
@@ -27,7 +27,7 @@ export function useAllV3Ticks(currencyA: Currency | undefined, currencyB: Curren
 
     //TODO(judo): determine if pagination is necessary for this query
     const { isLoading, isError, error, isUninitialized, data } = useAllV3TicksQuery(poolAddress ? { poolAddress: poolAddress?.toLowerCase(), skip: 0 } : skipToken, {
-        pollingInterval: ms`2m`,
+        pollingInterval: 2 * 60 * 1000,
     });
 
     return {

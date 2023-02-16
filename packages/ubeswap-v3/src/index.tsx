@@ -3,7 +3,7 @@ import "@reach/dialog/styles.css";
 import "./components/analytics";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { createWeb3ReactRoot, Web3ReactProvider } from "@web3-react/core";
-import { Children, StrictMode } from "react";
+import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { HashRouter } from "react-router-dom";
@@ -25,7 +25,6 @@ import GasUpdater from "./state/application/gasUpdater";
 import "./assets/styles/index.scss";
 
 import AlgebraConfig from "./algebra.config";
-import V3FarmingPage from "./pages/Farming/FarmingPage";
 
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName);
 
@@ -52,8 +51,8 @@ function Updaters() {
     );
 }
 
-function Wrapper({ children }) {
-    return (
+ReactDOM.render(
+    <StrictMode>
         <ApolloProvider client={client}>
             <Provider store={store}>
                 <HashRouter>
@@ -64,7 +63,7 @@ function Wrapper({ children }) {
                                 <Updaters />
                                 <ThemeProvider>
                                     <ThemedGlobalStyle />
-                                    {children}
+                                    <App />
                                 </ThemeProvider>
                             </Blocklist>
                         </Web3ProviderNetwork>
@@ -73,22 +72,6 @@ function Wrapper({ children }) {
                 </HashRouter>
             </Provider>
         </ApolloProvider>
-    );
-}
-
-ReactDOM.render(
-    <StrictMode>
-        <Wrapper>
-            <App />
-        </Wrapper>
     </StrictMode>,
     document.getElementById("root")
 );
-
-export function FarmingPage() {
-    return (
-        <Wrapper>
-            <V3FarmingPage />
-        </Wrapper>
-    );
-}

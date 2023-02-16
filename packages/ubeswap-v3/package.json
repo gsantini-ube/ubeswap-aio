@@ -107,7 +107,6 @@
     "ajv": "^6.12.3",
     "algebra-packeges": "^2.1.4",
     "cids": "^1.0.0",
-    "components": "link:./src/components",
     "copy-to-clipboard": "^3.2.0",
     "cross-env": "^7.0.2",
     "d3": "^7.0.0",

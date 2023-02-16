@@ -84,15 +84,23 @@ export default function App() {
         });
     }, [account]);
 
+    // const handleNavChange = (menu: string, version: number) => {
+    //     switch (version) {
+    //         case 2:
+    //             const url = menu === "logo" || menu === "swap" ? "" : menu;
+    //             location.href = `${process.env.REACT_APP_V2_URL}/#/${url}`;
+    //             break;
+    //         case 3:
+    //             history.push(`/${menu === "farm" ? "farming" : menu}`);
+    //             break;
+    //     }
+    // };
     const handleNavChange = (menu: string, version: number) => {
-        switch (version) {
-            case 2:
-                const url = menu === "logo" || menu === "swap" ? "" : menu;
-                location.href = `${process.env.REACT_APP_V2_URL}/#/${url}`;
-                break;
-            case 3:
-                history.push(`/${menu === "farm" ? "farming" : menu}`);
-                break;
+        const url = menu === "logo" || menu === "swap" ? "" : menu;
+        if (version === 3) {
+            location.href = `/v3/#/${url}`;
+        } else if (version === 2) {
+            location.href = `/#/${url}`;
         }
     };
 
@@ -143,7 +151,7 @@ export default function App() {
                                     <Switch>
                                         {/* <Route strict path="/info" component={InfoPage} /> */}
 
-                                        <Route strict path="/farming" component={FarmingPage} />
+                                        <Route strict path="/farm" component={FarmingPage} />
 
                                         {/* <Route exact strict path="/send" component={RedirectPathToSwapOnly} /> */}
                                         {/* <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} /> */}
