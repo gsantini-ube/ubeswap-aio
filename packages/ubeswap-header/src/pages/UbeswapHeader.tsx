@@ -135,7 +135,6 @@ interface Props {
   showToggleDarkMode?: boolean
   enableUrlWarning?: boolean
   onUpdateProvider?: (provider: Web3Provider) => void
-  onNavChanged: (menu: string, version: number) => void
   onModeChanged?: (mode: string) => void
 }
 
@@ -145,7 +144,6 @@ export default function UbeswapHeader({
   showToggleDarkMode = true,
   enableUrlWarning = true,
   onUpdateProvider,
-  onNavChanged,
   onModeChanged,
 }: Props) {
   return (
@@ -200,7 +198,6 @@ export default function UbeswapHeader({
                         version={version}
                         useDarkMode={darkMode}
                         showToggleDarkMode={showToggleDarkMode}
-                        onNavChanged={(menu: string, version: number) => onNavChanged(menu, version)}
                         onUpdateProvider={(provider: Web3Provider) => {
                           if (onUpdateProvider) onUpdateProvider(provider)
                         }}

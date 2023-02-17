@@ -362,12 +362,11 @@ const NETWORK_LABELS: { [chainId in ChainId]?: string } = {
 }
 
 interface Props {
-  version: number
+  version?: number
   useDarkMode?: boolean
   showToggleDarkMode?: boolean
   showVersionToggleButton?: boolean
   onUpdateProvider: (provider: Web3Provider) => void
-  onNavChanged: (menu: string, version: number) => void
   onModeChanged: (mode: string) => void
 }
 
@@ -377,7 +376,6 @@ export default function Header({
   showToggleDarkMode = true,
   showVersionToggleButton = false,
   onUpdateProvider,
-  onNavChanged,
   onModeChanged,
 }: Props) {
   const { address: account, network } = useContractKit()
@@ -417,10 +415,6 @@ export default function Header({
     setDrawerVisible(toggled)
   }
 
-  const menuItemClicked = (menu: string, v = 2) => {
-    onNavChanged(menu, v)
-  }
-
   return (
     <HeaderFrame>
       <Modal isOpen={showUbeBalanceModal} onDismiss={() => setShowUbeBalanceModal(false)}>
@@ -428,9 +422,10 @@ export default function Header({
       </Modal>
       <HeaderRow>
         <Title
-          to={'#'}
-          onClick={() => {
-            menuItemClicked('logo')
+          to={'/swap'}
+          onClick={(e) => {
+            e.preventDefault()
+            location.href = '/#/swap'
           }}
         >
           <UbeIcon>
@@ -441,9 +436,10 @@ export default function Header({
         <HeaderLinks>
           <StyledNavLink
             id={`swap-nav-link`}
-            to={'#'}
-            onClick={() => {
-              menuItemClicked('swap')
+            to={'/swap'}
+            onClick={(e) => {
+              e.preventDefault()
+              location.href = '/#/swap'
             }}
             isActive={(match, { pathname }) => pathname.includes('swap')}
           >
@@ -451,10 +447,10 @@ export default function Header({
           </StyledNavLink>
           <StyledNavLink
             id={`limit-order-nav-link`}
-            to={'#'}
+            to={'/limit-order'}
             onClick={(e) => {
               e.preventDefault()
-              menuItemClicked('limit-order')
+              location.href = '/#/limit-order'
             }}
             isActive={(match, { pathname }) => pathname.includes('limit-order')}
           >
@@ -488,15 +484,15 @@ export default function Header({
           >
             {t('farm')}
           </StyledNavLinkExtraSmall> */}
-          <PoolMenuGroup version={version} onMenuItemClicked={(menu, version) => menuItemClicked(menu, version)} />
-          <FarmMenuGroup version={version} onMenuItemClicked={(menu, version) => menuItemClicked(menu, version)} />
+          <PoolMenuGroup />
+          <FarmMenuGroup />
           <BridgeMenuGroup />
           <StyledNavLink
             id={`stake-nav-link`}
-            to={'#'}
+            to={'/stake'}
             onClick={(e) => {
               e.preventDefault()
-              menuItemClicked('stake')
+              location.href = '/#/stake'
             }}
             isActive={(match, { pathname }) => pathname.includes('stake')}
           >
@@ -526,15 +522,14 @@ export default function Header({
                   to={'/pool'}
                   onClick={(e) => {
                     e.preventDefault()
-                    onDrawerClose()
-                    menuItemClicked('pool', 2)
+                    location.href = '/#/pool'
                   }}
                   isActive={(match, { pathname }) =>
-                    (pathname.startsWith('/add') ||
-                      pathname.startsWith('/remove') ||
-                      pathname.startsWith('/create') ||
-                      pathname.startsWith('/find') ||
-                      pathname.includes('/pool')) &&
+                    (pathname.includes('/#/add') ||
+                      pathname.includes('/#/remove') ||
+                      pathname.includes('/#/create') ||
+                      pathname.includes('/#/find') ||
+                      pathname.includes('/#/pool')) &&
                     version === 2
                   }
                 >
@@ -547,15 +542,14 @@ export default function Header({
                   to={'/pool'}
                   onClick={(e) => {
                     e.preventDefault()
-                    onDrawerClose()
-                    menuItemClicked('pool', 3)
+                    location.href = '/v3/#/pool'
                   }}
                   isActive={(match, { pathname }) =>
-                    (pathname.startsWith('/add') ||
-                      pathname.startsWith('/remove') ||
-                      pathname.startsWith('/create') ||
-                      pathname.startsWith('/find') ||
-                      pathname.includes('/pool')) &&
+                    (pathname.includes('/#/add') ||
+                      pathname.includes('/#/remove') ||
+                      pathname.includes('/#/create') ||
+                      pathname.includes('/#/find') ||
+                      pathname.includes('/#/pool')) &&
                     version === 3
                   }
                 >
@@ -563,15 +557,7 @@ export default function Header({
                 </StyledNavLink>
               </StyledSubMenuItem>
               <StyledMenuItem>
-                <StyledNavLink
-                  id={'stake-drawer-nav-link'}
-                  to={'#'}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    onDrawerClose()
-                    menuItemClicked('farm')
-                  }}
-                >
+                <StyledNavLink id={'stake-drawer-nav-link'} to={'#'}>
                   {t('farm')}
                 </StyledNavLink>
               </StyledMenuItem>
@@ -581,10 +567,8 @@ export default function Header({
                   to={'/farm'}
                   onClick={(e) => {
                     e.preventDefault()
-                    onDrawerClose()
-                    menuItemClicked('farm', 2)
+                    location.href = '/#/farm'
                   }}
-                  isActive={(match, { pathname }) => pathname.includes('farm') && version === 2}
                 >
                   V2
                 </StyledNavLink>
@@ -595,10 +579,8 @@ export default function Header({
                   to={'/farm'}
                   onClick={(e) => {
                     e.preventDefault()
-                    onDrawerClose()
-                    menuItemClicked('farm', 3)
+                    location.href = '/v3/#/farm'
                   }}
-                  isActive={(match, { pathname }) => pathname.includes('farm') && version === 3}
                 >
                   V3
                 </StyledNavLink>
@@ -708,7 +690,7 @@ export default function Header({
             </StyledMenuButton>
           )}
           {showVersionToggleButton && <VersionToggleMenu />}
-          <Menu onSend={() => menuItemClicked('send')} />
+          <Menu />
         </HeaderElementWrap>
       </HeaderControls>
     </HeaderFrame>

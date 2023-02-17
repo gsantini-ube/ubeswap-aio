@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
-import { BookOpen, Code, Info, MessageCircle, PieChart, Send } from 'react-feather'
-import { MoreHorizontal } from 'react-feather'
+import { BookOpen, Code, Info, MessageCircle, MoreHorizontal, PieChart, Send } from 'react-feather'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
@@ -102,11 +101,7 @@ const MenuItemInternal = styled(NavLink)`
 
 const CODE_LINK = 'https://github.com/Ubeswap/ubeswap-interface'
 
-interface Props {
-  onSend: () => void
-}
-
-export default function Menu({ onSend }: Props) {
+export default function Menu() {
   const node = useRef<HTMLDivElement>()
   const open = useModalOpen(ApplicationModal.MENU)
   const toggle = useToggleModal(ApplicationModal.MENU)
@@ -122,7 +117,14 @@ export default function Menu({ onSend }: Props) {
 
       {open && (
         <MenuFlyout>
-          <MenuItemInternal id="link" to="#" onClick={onSend}>
+          <MenuItemInternal
+            id="link"
+            to={'/send'}
+            onClick={(e) => {
+              e.preventDefault()
+              location.href = '/#/send'
+            }}
+          >
             <Send size={14} />
             Send
           </MenuItemInternal>

@@ -102,23 +102,6 @@ export default function App() {
     }
   }, [curLocation])
 
-  // const handleNavChange = (menu: string, version: number) => {
-  //   if (version === 2) {
-  //     const url = menu === 'logo' || menu === 'swap' ? '' : menu
-  //     history.push(`/${url}`)
-  //   } else {
-  //     location.href = `${V3Url}/#/${menu}`
-  //   }
-  // }
-  const handleNavChange = (menu: string, version: number) => {
-    const url = menu === 'logo' || menu === 'swap' ? '' : menu
-    if (version === 3) {
-      location.href = `/v3/#/${url}`
-    } else if (version === 2) {
-      location.href = `/#/${url}`
-    }
-  }
-
   const handleModeChange = () => {
     // permanent dark mode
     if (darkMode === false) {
@@ -137,12 +120,10 @@ export default function App() {
       <AppWrapper>
         <UbeswapHeaderWrapper>
           <UbeswapHeader
+            version={2}
             darkMode={true}
             showToggleDarkMode={false}
             enableUrlWarning={false}
-            onNavChanged={(menu: string, version: number) => {
-              handleNavChange(menu, version)
-            }}
             onModeChanged={() => {
               handleModeChange()
             }}

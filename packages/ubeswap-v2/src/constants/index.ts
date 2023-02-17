@@ -281,5 +281,3 @@ export const DEXES_TO_EXCLUDE = [
   'uniswap-v3',
   ...(process.env.REACT_APP_DEX_EXCLUSION_LIST?.split(',') ?? []),
 ]
-
-export const V3Url = process.env.REACT_APP_V3_URL ?? 'https://funny-trifle-929534.netlify.app'

@@ -45,25 +45,18 @@ const MenuItem = styled(NavLink)`
   }
 `
 
-interface Props {
-  version: number
-  onMenuItemClicked: (menu: string, version: number) => void
-}
-
-export default function FarmMenuGroup({ version, onMenuItemClicked }: Props) {
+export default function FarmMenuGroup() {
+  const { href } = location
   const node = useRef<HTMLDivElement>()
   const open = useModalOpen(ApplicationModal.FARM)
   const toggle = useToggleModal(ApplicationModal.FARM)
   useOnClickOutside(node, open ? toggle : undefined)
 
-  const menuItemClicked = (v: number) => {
-    onMenuItemClicked(`farm`, v)
-    toggle()
-  }
-
   return (
     <StyledMenu ref={node as any}>
-      <StyledNavMenu onClick={toggle}>Farm</StyledNavMenu>
+      <StyledNavMenu onClick={toggle} isActive={href.includes('/#/farm')}>
+        Farm
+      </StyledNavMenu>
 
       {open && (
         <MenuFlyout>
@@ -72,9 +65,8 @@ export default function FarmMenuGroup({ version, onMenuItemClicked }: Props) {
             to={'#'}
             onClick={(e) => {
               e.preventDefault()
-              menuItemClicked(2)
+              location.href = '/#/farm'
             }}
-            isActive={(match, { pathname }) => pathname.includes('farm') && version === 2}
           >
             V2
           </MenuItem>
@@ -83,9 +75,8 @@ export default function FarmMenuGroup({ version, onMenuItemClicked }: Props) {
             to={'#'}
             onClick={(e) => {
               e.preventDefault()
-              menuItemClicked(3)
+              location.href = '/v3/#/farm'
             }}
-            isActive={(match, { pathname }) => pathname.includes('farm') && version === 3}
           >
             V3
           </MenuItem>

@@ -84,26 +84,6 @@ export default function App() {
         });
     }, [account]);
 
-    // const handleNavChange = (menu: string, version: number) => {
-    //     switch (version) {
-    //         case 2:
-    //             const url = menu === "logo" || menu === "swap" ? "" : menu;
-    //             location.href = `${process.env.REACT_APP_V2_URL}/#/${url}`;
-    //             break;
-    //         case 3:
-    //             history.push(`/${menu === "farm" ? "farming" : menu}`);
-    //             break;
-    //     }
-    // };
-    const handleNavChange = (menu: string, version: number) => {
-        const url = menu === "logo" || menu === "swap" ? "" : menu;
-        if (version === 3) {
-            location.href = `/v3/#/${url}`;
-        } else if (version === 2) {
-            location.href = `/#/${url}`;
-        }
-    };
-
     return (
         <ErrorBoundary>
             <GlobalStyle />
@@ -119,9 +99,6 @@ export default function App() {
                             enableUrlWarning={false}
                             onUpdateProvider={async (provider) => {
                                 console.log(await provider.listAccounts());
-                            }}
-                            onNavChanged={(menu: string, version: number) => {
-                                handleNavChange(menu, version);
                             }}
                         />
                         <div className={"app-body w-100 ph-1 pt-3 mh-a pb-4 mm_pt-5"} style={{ zIndex: 1, marginBottom: "5rem" }}>

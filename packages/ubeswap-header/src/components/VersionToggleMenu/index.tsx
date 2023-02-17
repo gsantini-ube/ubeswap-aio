@@ -84,26 +84,13 @@ const MenuItemInternal = styled(NavLink)`
   }
 `
 
-// const v2Url = 'https://app.ubeswap.org'
-// const v3Url = 'https://cerulean-empanada-f96e93.netlify.app'
-const v2Url = 'https://loquacious-paletas-7fecc7.netlify.app'
-const v3Url = 'https://funny-trifle-929534.netlify.app'
-
 export default function VersionToggleMenu() {
   const node = useRef<HTMLDivElement>()
   const open = useModalOpen(ApplicationModal.VERSION_SWITCHER)
   const toggle = useToggleModal(ApplicationModal.VERSION_SWITCHER)
   useOnClickOutside(node, open ? toggle : undefined)
   const { t } = useTranslation()
-  const [currentVersion] = useState(window.location.origin !== v3Url ? 'V2' : 'V3')
-
-  const onVersionChange = (versionId: number) => {
-    if (window.location.origin !== v3Url && versionId === 3) {
-      window.location.href = v3Url
-    } else if (window.location.origin !== v2Url && versionId === 2) {
-      window.location.href = v2Url
-    }
-  }
+  const [currentVersion] = useState('v2')
 
   return (
     // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/30451
@@ -114,10 +101,10 @@ export default function VersionToggleMenu() {
 
       {open && (
         <MenuFlyout>
-          <MenuItemInternal id="link" to="#" onClick={() => onVersionChange(2)}>
+          <MenuItemInternal id="link" to="#">
             V2
           </MenuItemInternal>
-          <MenuItemInternal id="link" to="#" onClick={() => onVersionChange(3)}>
+          <MenuItemInternal id="link" to="#">
             V3
           </MenuItemInternal>
         </MenuFlyout>

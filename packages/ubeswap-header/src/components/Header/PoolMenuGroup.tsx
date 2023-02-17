@@ -45,25 +45,27 @@ const MenuItem = styled(NavLink)`
   }
 `
 
-interface Props {
-  version: number
-  onMenuItemClicked: (menu: string, version: number) => void
-}
-
-export default function PoolMenuGroup({ version, onMenuItemClicked }: Props) {
+export default function PoolMenuGroup() {
+  const { href } = location
   const node = useRef<HTMLDivElement>()
   const open = useModalOpen(ApplicationModal.POOL)
   const toggle = useToggleModal(ApplicationModal.POOL)
   useOnClickOutside(node, open ? toggle : undefined)
 
-  const menuItemClicked = (v: number) => {
-    onMenuItemClicked(`pool`, v)
-    toggle()
-  }
-
   return (
     <StyledMenu ref={node as any}>
-      <StyledNavMenu onClick={toggle}>Pool</StyledNavMenu>
+      <StyledNavMenu
+        onClick={toggle}
+        isActive={
+          href.includes('/#/add') ||
+          href.includes('/#/remove') ||
+          href.includes('/#/create') ||
+          href.includes('/#/find') ||
+          href.includes('/#/pool')
+        }
+      >
+        Pool
+      </StyledNavMenu>
 
       {open && (
         <MenuFlyout>
@@ -72,16 +74,8 @@ export default function PoolMenuGroup({ version, onMenuItemClicked }: Props) {
             to={'#'}
             onClick={(e) => {
               e.preventDefault()
-              menuItemClicked(2)
+              location.href = '/#/pool'
             }}
-            isActive={(match, { pathname }) =>
-              (pathname.startsWith('/add') ||
-                pathname.startsWith('/remove') ||
-                pathname.startsWith('/create') ||
-                pathname.startsWith('/find') ||
-                pathname.includes('/pool')) &&
-              version === 2
-            }
           >
             V2
           </MenuItem>
@@ -90,16 +84,8 @@ export default function PoolMenuGroup({ version, onMenuItemClicked }: Props) {
             to={'#'}
             onClick={(e) => {
               e.preventDefault()
-              menuItemClicked(3)
+              location.href = '/v3/#/pool'
             }}
-            isActive={(match, { pathname }) =>
-              (pathname.startsWith('/add') ||
-                pathname.startsWith('/remove') ||
-                pathname.startsWith('/create') ||
-                pathname.startsWith('/find') ||
-                pathname.includes('/pool')) &&
-              version === 3
-            }
           >
             V3
           </MenuItem>

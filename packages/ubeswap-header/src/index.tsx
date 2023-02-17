@@ -15,9 +15,6 @@ ReactDOM.render(
       onUpdateProvider={async (provider) => {
         console.log(await provider.listAccounts())
       }}
-      onNavChanged={(menu: string, version: number) => {
-        console.log('Menu Changed : ', menu, version)
-      }}
     />
   </React.StrictMode>,
   document.getElementById('root')

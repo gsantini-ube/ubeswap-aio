@@ -2,7 +2,7 @@
   "name": "ubeswap-v3",
   "version": "1.0.0",
   "description": "Ubeswap Interface V3",
-  "homepage": ".",
+  "homepage": "",
   "private": true,
   "main": "src/index.tsx",
   "resolutions": {
