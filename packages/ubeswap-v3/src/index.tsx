@@ -21,10 +21,12 @@ import UserUpdater from "./state/user/updater";
 import ThemeProvider, { ThemedGlobalStyle } from "./theme";
 import getLibrary from "./utils/getLibrary";
 import "@fontsource/montserrat";
+import { ContractKitProvider } from "@celo-tools/use-contractkit";
 import GasUpdater from "./state/application/gasUpdater";
 import "./assets/styles/index.scss";
 
 import AlgebraConfig from "./algebra.config";
+import { Alfajores, Mainnet } from "ubeswap-header/src/networks";
 
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName);
 
@@ -53,25 +55,57 @@ function Updaters() {
 
 ReactDOM.render(
     <StrictMode>
-        <ApolloProvider client={client}>
-            <Provider store={store}>
-                <HashRouter>
-                    {/* <LanguageProvider> */}
-                    <Web3ReactProvider getLibrary={getLibrary}>
-                        <Web3ProviderNetwork getLibrary={getLibrary}>
-                            <Blocklist>
-                                <Updaters />
-                                <ThemeProvider>
-                                    <ThemedGlobalStyle />
-                                    <App />
-                                </ThemeProvider>
-                            </Blocklist>
-                        </Web3ProviderNetwork>
-                    </Web3ReactProvider>
-                    {/* </LanguageProvider> */}
-                </HashRouter>
-            </Provider>
-        </ApolloProvider>
+        <ContractKitProvider
+            dapp={{
+                name: "Ubeswap",
+                description: "The interface for Ubeswap, a decentralized exchange and automated market maker protocol for Celo assets.",
+                url: "https://app.ubeswap.org",
+                icon: "https://info.ubeswap.org/favicon.png",
+            }}
+            network={Mainnet}
+            networks={[Mainnet, Alfajores]}
+            connectModal={{
+                reactModalProps: {
+                    style: {
+                        content: {
+                            top: "50%",
+                            left: "50%",
+                            right: "auto",
+                            bottom: "auto",
+                            transform: "translate(-50%, -50%)",
+                            border: "unset",
+                            background: "unset",
+                            padding: "unset",
+                            color: "black",
+                        },
+                        overlay: {
+                            zIndex: 100,
+                        },
+                    },
+                    overlayClassName: "tw-fixed tw-bg-gray-100 dark:tw-bg-gray-700 tw-bg-opacity-75 tw-inset-0",
+                },
+            }}
+        >
+            <ApolloProvider client={client}>
+                <Provider store={store}>
+                    <HashRouter>
+                        {/* <LanguageProvider> */}
+                        <Web3ReactProvider getLibrary={getLibrary}>
+                            <Web3ProviderNetwork getLibrary={getLibrary}>
+                                <Blocklist>
+                                    <Updaters />
+                                    <ThemeProvider>
+                                        <ThemedGlobalStyle />
+                                        <App />
+                                    </ThemeProvider>
+                                </Blocklist>
+                            </Web3ProviderNetwork>
+                        </Web3ReactProvider>
+                        {/* </LanguageProvider> */}
+                    </HashRouter>
+                </Provider>
+            </ApolloProvider>
+        </ContractKitProvider>
     </StrictMode>,
     document.getElementById("root")
 );

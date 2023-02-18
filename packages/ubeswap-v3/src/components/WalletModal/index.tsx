@@ -10,7 +10,7 @@ import usePrevious from "../../hooks/usePrevious";
 import { ApplicationModal } from "../../state/application/actions";
 import { useModalOpen, useWalletModalToggle } from "../../state/application/hooks";
 import AccountDetails from "../AccountDetails";
-import { t, Trans } from "@lingui/macro";
+// import { t, Trans } from "@lingui/macro";
 import Modal from "../Modal";
 import Option from "./Option";
 import PendingView from "./PendingView";
@@ -23,6 +23,7 @@ import { UserRejectedRequestError, WalletConnectConnector } from "@web3-react/wa
 import { ArrowLeft } from "react-feather";
 
 import AlgebraConfig from "../../algebra.config";
+import { useContractKit } from "@celo-tools/use-contractkit";
 
 const WALLET_VIEWS = {
     OPTIONS: "options",
@@ -39,7 +40,7 @@ interface WalletModalProps {
 
 export default function WalletModal({ pendingTransactions, confirmedTransactions, ENSName }: WalletModalProps) {
     // important that these are destructed from the account-specific web3-react context
-
+    const { connect: connect1 } = useContractKit();
     const { active, account, connector, activate, error, setError, deactivate } = useWeb3React();
 
     const [walletView, setWalletView] = useState(WALLET_VIEWS.ACCOUNT);
@@ -79,6 +80,9 @@ export default function WalletModal({ pendingTransactions, confirmedTransactions
     }, [setWalletView, active, error, connector, walletModalOpen, activePrevious, connectorPrevious]);
 
     const tryActivation = async (connector: AbstractConnector | undefined) => {
+        console.log("tryActivation", connector);
+        connect1();
+        return;
         let name = "";
         Object.keys(SUPPORTED_WALLETS).map((key) => {
             if (connector === SUPPORTED_WALLETS[key].connector) {
@@ -111,7 +115,7 @@ export default function WalletModal({ pendingTransactions, confirmedTransactions
                 .catch((error) => {
                     console.error(error);
                     if (error instanceof UnsupportedChainIdError) {
-                        setErrorMessage(t`Please connect to the ${AlgebraConfig.CHAIN_PARAMS.chainName} network.`);
+                        setErrorMessage(`Please connect to the ${AlgebraConfig.CHAIN_PARAMS.chainName} network.`);
                         setPendingError(true);
                         setError(error);
                     } else if (error instanceof UserRejectedRequestError) {
@@ -153,7 +157,7 @@ export default function WalletModal({ pendingTransactions, confirmedTransactions
                 }
 
                 if (error && error instanceof UnsupportedChainIdError) {
-                    return <div>{t`Please connect to ${AlgebraConfig.CHAIN_PARAMS.chainName}`}</div>;
+                    return <div>{`Please connect to ${AlgebraConfig.CHAIN_PARAMS.chainName}`}</div>;
                 }
 
                 return null;
@@ -185,7 +189,7 @@ export default function WalletModal({ pendingTransactions, confirmedTransactions
                 // don't show injected if there's no injected provider
                 if (!(window.web3 || window.ethereum)) {
                     if (option.name === "MetaMask") {
-                        return <Option id={`connect-${key}`} key={key} color={"#E8831D"} header={<Trans>Install Metamask</Trans>} subheader={null} link={"https://metamask.io/"} icon={MetamaskIcon} />;
+                        return <Option id={`connect-${key}`} key={key} color={"#E8831D"} header={"Install Metamask"} subheader={null} link={"https://metamask.io/"} icon={MetamaskIcon} />;
                     } else {
                         return null; //dont want to return install twice
                     }
@@ -198,7 +202,7 @@ export default function WalletModal({ pendingTransactions, confirmedTransactions
                 else if (option.name === "Injected" && isMetamask) {
                     return null;
                 } else if (option.name === "ONTO Wallet") {
-                    return <div>{t`Please select ${AlgebraConfig.CHAIN_PARAMS.chainName}`}</div>;
+                    return <div>{`Please select ${AlgebraConfig.CHAIN_PARAMS.chainName}`}</div>;
                 }
             }
 
@@ -206,7 +210,7 @@ export default function WalletModal({ pendingTransactions, confirmedTransactions
                 // @ts-ignore
                 if (!window.onto) {
                     if (option.name === "ONTO Wallet") {
-                        return <Option id={`connect-${key}`} key={key} color={"#000000"} header={<Trans>Install ONTO Wallet</Trans>} subheader={null} link={"https://onto.app/"} icon={OntoIcon} />;
+                        return <Option id={`connect-${key}`} key={key} color={"#000000"} header={"Install ONTO Wallet"} subheader={null} link={"https://onto.app/"} icon={OntoIcon} />;
                     } else return null;
                 }
             }
@@ -238,7 +242,7 @@ export default function WalletModal({ pendingTransactions, confirmedTransactions
             return (
                 <div className={"c-w b"}>
                     <div className={"flex-s-between"}>
-                        {error instanceof UnsupportedChainIdError ? <Trans>Wrong Network</Trans> : <Trans>Error connecting</Trans>}
+                        {error instanceof UnsupportedChainIdError ? "Wrong Network" : "Error connecting"}
 
                         <div className={"cur-p hover-op trans-op"} onClick={toggleWalletModal}>
                             <Close />
@@ -247,21 +251,19 @@ export default function WalletModal({ pendingTransactions, confirmedTransactions
                     <div className={"pt-1"}>
                         {error instanceof UnsupportedChainIdError ? (
                             <>
-                                <h5 className={"mb-1"}>
-                                    <Trans>{isOnto ? t`Change your network in ONTO Wallet browser extension` : t`Please connect to the ${AlgebraConfig.CHAIN_PARAMS.chainName}.`}</Trans>
-                                </h5>
+                                <h5 className={"mb-1"}>{isOnto ? `Change your network in ONTO Wallet browser extension` : `Please connect to the ${AlgebraConfig.CHAIN_PARAMS.chainName}.`}</h5>
                                 {isMobile ? (
-                                    <p>{t`Add ${AlgebraConfig.CHAIN_PARAMS.chainName} to your metamask app.`}</p>
+                                    <p>{`Add ${AlgebraConfig.CHAIN_PARAMS.chainName} to your metamask app.`}</p>
                                 ) : (
                                     !isOnto && (
                                         <button className={"btn primary p-1 w-100 b"} onClick={addPolygonNetwork}>
-                                            {t`Connect to ${AlgebraConfig.CHAIN_PARAMS.chainName}`}
+                                            {`Connect to ${AlgebraConfig.CHAIN_PARAMS.chainName}`}
                                         </button>
                                     )
                                 )}
                             </>
                         ) : (
-                            <Trans>Error connecting. Try refreshing the page.</Trans>
+                            "Error connecting. Try refreshing the page."
                         )}
                     </div>
                 </div>
@@ -289,14 +291,10 @@ export default function WalletModal({ pendingTransactions, confirmedTransactions
                                 setWalletView(WALLET_VIEWS.ACCOUNT);
                             }}
                         >
-                            <Trans>
-                                <ArrowLeft size={"1rem"} className={"mr-025"} /> Back
-                            </Trans>
+                            <ArrowLeft size={"1rem"} className={"mr-025"} /> Back
                         </span>
                     ) : (
-                        <span className={"c-w"}>
-                            <Trans>Connect Wallet</Trans>
-                        </span>
+                        <span className={"c-w"}>Connect Wallet</span>
                     )}
                     <div className={"cur-p hover-op trans-op"} onClick={toggleWalletModal}>
                         <Close />

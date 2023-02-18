@@ -11,7 +11,7 @@ import { injected, ontoconnector, OntoWalletConnector } from "../../connectors";
 import Identicon from "../Identicon";
 import { ExternalLink as LinkIcon } from "react-feather";
 import { ExternalLink } from "../../theme";
-import { Trans } from "@lingui/macro";
+// import { Trans } from "@lingui/macro";
 import { useAppDispatch } from "../../state/hooks";
 import { IconWrapper, WalletAction } from "./styled";
 import { EthereumWindow } from "../../models/types";
@@ -50,11 +50,7 @@ export default function AccountDetails({ toggleWalletModal, pendingTransactions,
         const name = Object.keys(SUPPORTED_WALLETS)
             .filter((k) => SUPPORTED_WALLETS[k].connector === connector && (connector !== injected || isMetaMask === (k === "METAMASK")))
             .map((k) => SUPPORTED_WALLETS[k].name)[0];
-        return (
-            <div className={`fs-085 ${name === "Metamask" && "mb-05"}`}>
-                <Trans>Connected with {name}</Trans>
-            </div>
-        );
+        return <div className={`fs-085 ${name === "Metamask" && "mb-05"}`}>Connected with {name}</div>;
     }
 
     function getStatusIcon() {
@@ -83,7 +79,7 @@ export default function AccountDetails({ toggleWalletModal, pendingTransactions,
         <>
             <div className={"pos-r"}>
                 <div className={"flex-s-between w-100 c-w mb-1"}>
-                    <Trans>Account</Trans>
+                    Account
                     <span className={"cur-p hover-op trans-op"} onClick={toggleWalletModal}>
                         <Close />
                     </span>
@@ -91,11 +87,7 @@ export default function AccountDetails({ toggleWalletModal, pendingTransactions,
                 <div className={"account-details p-1 mb-15 br-12 c-w"}>
                     <div className={"f f-ac mb-05"}>
                         {formatConnectorName()}
-                        {connector !== injected && connector !== ontoconnector ? (
-                            <WalletAction onClick={() => disconnectHandler()}>
-                                <Trans>Disconnect</Trans>
-                            </WalletAction>
-                        ) : null}
+                        {connector !== injected && connector !== ontoconnector ? <WalletAction onClick={() => disconnectHandler()}>Disconnect</WalletAction> : null}
                     </div>
                     <div className={"l f f-ac c-w mb-05"} id="web3-account-identifier-row">
                         {ENSName ? (
@@ -113,33 +105,21 @@ export default function AccountDetails({ toggleWalletModal, pendingTransactions,
                     <div className={"f"}>
                         {ENSName ? (
                             <>
-                                {account && (
-                                    <Copy toCopy={account}>
-                                        <Trans>Copy Address</Trans>
-                                    </Copy>
-                                )}
+                                {account && <Copy toCopy={account}>Copy Address</Copy>}
                                 {chainId && account && (
                                     <ExternalLink href={getExplorerLink(chainId, ENSName, ExplorerDataType.ADDRESS)}>
                                         <LinkIcon size={"1rem"} color="var(--primary)" />
-                                        <span className={"ml-025 c-p hover-line"}>
-                                            <Trans>View on Explorer</Trans>
-                                        </span>
+                                        <span className={"ml-025 c-p hover-line"}>View on Explorer</span>
                                     </ExternalLink>
                                 )}
                             </>
                         ) : (
                             <>
-                                {account && (
-                                    <Copy toCopy={account}>
-                                        <Trans>Copy Address</Trans>
-                                    </Copy>
-                                )}
+                                {account && <Copy toCopy={account}>Copy Address</Copy>}
                                 {chainId && account && (
                                     <ExternalLink href={getExplorerLink(chainId, account, ExplorerDataType.ADDRESS)}>
                                         <LinkIcon size={"1rem"} color="var(--primary)" />
-                                        <span className={"ml-025 c-p hover-line"}>
-                                            <Trans>View on Explorer</Trans>
-                                        </span>
+                                        <span className={"ml-025 c-p hover-line"}>View on Explorer</span>
                                     </ExternalLink>
                                 )}
                             </>
@@ -150,9 +130,9 @@ export default function AccountDetails({ toggleWalletModal, pendingTransactions,
             {!!pendingTransactions.length || !!confirmedTransactions.length ? (
                 <Card isDark classes={"br-12 mt-1 p-1"}>
                     <div className={"c-p flex-s-between mb-05"}>
-                        <Trans>Recent Transactions</Trans>
+                        Recent Transactions
                         <button className={"br-0 bg-t c-p p-0 hover-line"} onClick={clearAllTransactionsCallback}>
-                            <Trans>(clear all)</Trans>
+                            (clear all)
                         </button>
                     </div>
                     {renderTransactions(pendingTransactions)}
@@ -160,7 +140,7 @@ export default function AccountDetails({ toggleWalletModal, pendingTransactions,
                 </Card>
             ) : (
                 <Card isDark classes={"f c f-ac f-jc br-12 mt-1 h-200"}>
-                    <Trans>Your transactions will appear here...</Trans>
+                    Your transactions will appear here...
                 </Card>
             )}
         </>

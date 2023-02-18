@@ -15,6 +15,7 @@ import { FormattedRewardInterface, Reward } from "../../models/interfaces";
 import Card from "../../shared/components/Card/Card";
 import Menu from "../../components/Menu";
 import { useAppSelector } from "../../state/hooks";
+import { useContractKit } from "@celo-tools/use-contractkit";
 // import { t, Trans } from "@lingui/macro";
 
 export const InfinityIcon = forwardRef(({ color = "currentColor", size = 18, ...rest }: { color?: string; size: number }, ref: any) => {
@@ -66,7 +67,8 @@ const farmingMenuList = [
 export default function FarmingPage() {
     const { account } = useActiveWeb3React();
     const { path } = useRouteMatch();
-    const toggleWalletModal = useWalletModalToggle();
+    // const toggleWalletModal = useWalletModalToggle();
+    const { connect } = useContractKit();
 
     const hasTransferred = useAppSelector((state) => state.farming.hasTransferred);
 
@@ -97,7 +99,7 @@ export default function FarmingPage() {
     return (
         <>
             <Helmet>
-                <title>{`QuickSwap — Farming`}</title>
+                <title>{`Ubeswap — Farming`}</title>
             </Helmet>
             <Card classes={"br-24 p-2 mm_p-1"}>
                 <Menu
@@ -113,7 +115,7 @@ export default function FarmingPage() {
                     </Route>
                     <Route exact path={`${path}/farms`}>
                         <Helmet>
-                            <title>{`QuickSwap — Farming • My Farms`}</title>
+                            <title>{`Ubeswap — Farming • My Farms`}</title>
                         </Helmet>
                         {account ? (
                             <>
@@ -131,7 +133,7 @@ export default function FarmingPage() {
                             <div className={"f f-ac f-jc f c h-400"}>
                                 <AlignJustify size={40} stroke={"white"} />
                                 <p className={"mb-1"}>Connect your account to view farms</p>
-                                <button className={"btn primary pv-05 ph-2 br-8 b"} onClick={toggleWalletModal}>
+                                <button className={"btn primary pv-05 ph-2 br-8 b"} onClick={connect}>
                                     Connect Wallet
                                 </button>
                             </div>
@@ -139,20 +141,20 @@ export default function FarmingPage() {
                     </Route>
                     {/* <Route exact path={`${path}/limit-farms`}>
                         <Helmet>
-                            <title>{t`QuickSwap — Farming • Limit Farms`}</title>
+                            <title>{t`Ubeswap — Farming • Limit Farms`}</title>
                         </Helmet>
                         <FarmingEventsPage data={allEvents} refreshing={allEventsLoading} fetchHandler={() => fetchAllEventsFn(true)} now={now} />
                     </Route> */}
                     <Route exact path={`${path}/infinite-farms`}>
                         <Helmet>
-                            <title>{`QuickSwap — Farming • Infinite Farms`}</title>
+                            <title>{`Ubeswap — Farming • Infinite Farms`}</title>
                         </Helmet>
 
                         <EternalFarmsPage data={eternalFarms} refreshing={eternalFarmsLoading} priceFetched={ethPricesFecthed} fetchHandler={() => fetchEternalFarmsFn(true)} />
                     </Route>
                     {/* <Route exact strict path={`${path}/farms-history`}>
                         <Helmet>
-                            <title>{t`QuickSwap — Farming • Farms History history`}</title>
+                            <title>{t`Ubeswap — Farming • Farms History history`}</title>
                         </Helmet>
                         <EventsHistory />
                     </Route> */}

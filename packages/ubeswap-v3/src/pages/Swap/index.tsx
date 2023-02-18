@@ -323,7 +323,7 @@ export default function Swap({ history }: RouteComponentProps) {
         <>
             <Helmet>
                 {/* //TODO */}
-                <title>{t`QuickSwap — Swap`}</title>
+                <title>{t`Ubeswap — Swap`}</title>
             </Helmet>
             <TokenWarningModal
                 isOpen={importTokensNotInDefault.length > 0 && !dismissTokenWarning}
@@ -513,7 +513,7 @@ export default function Swap({ history }: RouteComponentProps) {
                                                         {approvalState === ApprovalState.APPROVED || signatureState === UseERC20PermitState.SIGNED ? (
                                                             <Trans>You can now trade {currencies[Field.INPUT]?.symbol}</Trans>
                                                         ) : (
-                                                            <Trans>Allow QuickSwap to use your {currencies[Field.INPUT]?.symbol}</Trans>
+                                                            <Trans>Allow Ubeswap to use your {currencies[Field.INPUT]?.symbol}</Trans>
                                                         )}
                                                     </span>
                                                     {approvalState === ApprovalState.PENDING ? (
@@ -524,7 +524,7 @@ export default function Swap({ history }: RouteComponentProps) {
                                                         <MouseoverTooltip
                                                             text={
                                                                 <Trans>
-                                                                    You must give the QuickSwap smart contracts permission to use your {currencies[Field.INPUT]?.symbol}. You only have to do this once
+                                                                    You must give the Ubeswap smart contracts permission to use your {currencies[Field.INPUT]?.symbol}. You only have to do this once
                                                                     per token.
                                                                 </Trans>
                                                             }

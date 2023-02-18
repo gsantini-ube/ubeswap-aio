@@ -15,7 +15,7 @@ import "./index.scss";
 import { NavLink } from "react-router-dom";
 import { Sliders } from "react-feather";
 import HeaderMenu from "../../components/HeaderMenu";
-import { Trans } from "@lingui/macro";
+// import { Trans } from "@lingui/macro";
 
 import AlgebraConfig from "../../algebra.config";
 
@@ -57,7 +57,7 @@ export default function Header() {
             </a>
             <div className={"header__links"}>
                 <NavLink className={"header__links__link hover-op"} activeClassName={"header__links__link--active"} id={`swap-nav-link`} to={"/swap"}>
-                    <Trans>Swap</Trans>
+                    Swap
                 </NavLink>
                 <NavLink
                     className={"header__links__link hover-op trans-op"}
@@ -68,16 +68,14 @@ export default function Header() {
                     }
                     activeClassName={"header__links__link--active"}
                 >
-                    <Trans>Pool</Trans>
+                    Pool
                 </NavLink>
                 <NavLink className={"header__links__link hover-op"} activeClassName={"header__links__link--active"} id={`farming-nav-link`} to={"/farm"}>
-                    <span>
-                        <Trans>Farming</Trans>
-                    </span>
+                    <span>Farming</span>
                     <span className={"header__farming-circle"} />
                 </NavLink>
                 <NavLink className={"header__links__link hover-op"} activeClassName={"header__links__link--active"} id={`info-nav-link`} to={"/info"}>
-                    <Trans>Info</Trans>
+                    Info
                 </NavLink>
             </div>
 

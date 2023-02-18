@@ -18,10 +18,12 @@ import "./index.scss";
 import usePrevious, { usePreviousNonEmptyArray } from "../../hooks/usePrevious";
 import { EthereumWindow } from "models/types";
 import { useShowNewestPosition } from "../../state/mint/v3/hooks";
+import { useContractKit } from "@celo-tools/use-contractkit";
 
 export default function Pool() {
     const { account, chainId } = useActiveWeb3React();
-    const toggleWalletModal = useWalletModalToggle();
+    const { connect } = useContractKit();
+    // const toggleWalletModal = useWalletModalToggle();
 
     const [userHideClosedPositions, setUserHideClosedPositions] = useUserHideClosedPositions();
     const [hideFarmingPositions, setHideFarmingPositions] = useUserHideFarmingPositions();
@@ -98,7 +100,7 @@ export default function Pool() {
     return (
         <>
             <Helmet>
-                <title>{`QuickSwap — Pool`}</title>
+                <title>{`Ubeswap — Pool`}</title>
             </Helmet>
             <Card classes={"br-24 ph-2 pv-1 mxs_ph-1"}>
                 <SwapPoolTabs active={"pool"} />
@@ -130,7 +132,7 @@ export default function Pool() {
                             <div className={"f c f-ac f-jc h-400 w-100 maw-300"}>
                                 You do not have any liquidity positions.
                                 {showConnectAWallet && (
-                                    <button className={"btn primary pv-05 ph-1 mt-1 w-100"} onClick={toggleWalletModal}>
+                                    <button className={"btn primary pv-05 ph-1 mt-1 w-100"} onClick={connect}>
                                         Connect Wallet
                                     </button>
                                 )}

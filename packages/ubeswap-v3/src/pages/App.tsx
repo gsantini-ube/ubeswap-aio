@@ -98,7 +98,7 @@ export default function App() {
                             showToggleDarkMode={false}
                             enableUrlWarning={false}
                             onUpdateProvider={async (provider) => {
-                                console.log(await provider.listAccounts());
+                                // console.log(await provider.listAccounts());
                             }}
                         />
                         <div className={"app-body w-100 ph-1 pt-3 mh-a pb-4 mm_pt-5"} style={{ zIndex: 1, marginBottom: "5rem" }}>

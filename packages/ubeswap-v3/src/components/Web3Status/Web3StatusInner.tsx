@@ -5,7 +5,6 @@ import { useHasSocks } from "../../hooks/useSocksBalance";
 import { useWalletModalToggle } from "../../state/application/hooks";
 import { NetworkIcon, Text, Web3StatusConnect, Web3StatusConnected, Web3StatusError } from "./styled";
 import { RowBetween } from "../Row";
-import { t, Trans } from "@lingui/macro";
 import Loader from "../Loader";
 import { Sock } from "./Sock";
 import { shortenAddress } from "../../utils";
@@ -77,10 +76,7 @@ export function Web3StatusInner() {
             <Web3StatusConnected id="web3-status-connected" style={{ background: "transparent", color: "white", border: "none" }} onClick={toggleWalletModal} pending={hasPendingTransactions}>
                 {hasPendingTransactions ? (
                     <RowBetween>
-                        <Text>
-                            <Trans>{pending?.length} Pending</Trans>
-                        </Text>{" "}
-                        <Loader stroke="white" />
+                        <Text>{pending?.length} Pending</Text> <Loader stroke="white" />
                     </RowBetween>
                 ) : (
                     <>
@@ -97,7 +93,7 @@ export function Web3StatusInner() {
                 {ontoHelper && <OntoWrongChainModal handleClose={() => toggleOntoHelper(false)} />}
                 <Web3StatusError onClick={() => toggleOntoHelper(true)}>
                     <NetworkIcon />
-                    <Text>{t`Connect to ${AlgebraConfig.CHAIN_PARAMS.chainName}`}</Text>
+                    <Text>{`Connect to ${AlgebraConfig.CHAIN_PARAMS.chainName}`}</Text>
                 </Web3StatusError>
             </>
         );
@@ -105,15 +101,13 @@ export function Web3StatusInner() {
         return (
             <Web3StatusError onClick={addPolygonNetwork}>
                 <NetworkIcon />
-                <Text>{error instanceof UnsupportedChainIdError ? <span>{t`Connect to ${AlgebraConfig.CHAIN_PARAMS.chainName}`}</span> : <Trans>Error</Trans>}</Text>
+                <Text>{error instanceof UnsupportedChainIdError ? <span>{`Connect to ${AlgebraConfig.CHAIN_PARAMS.chainName}`}</span> : "Error"}</Text>
             </Web3StatusError>
         );
     } else {
         return (
             <Web3StatusConnect id="connect-wallet" onClick={toggleWalletModal} faded={!account}>
-                <Text>
-                    <Trans>Connect Wallet</Trans>
-                </Text>
+                <Text>Connect Wallet</Text>
             </Web3StatusConnect>
         );
     }
