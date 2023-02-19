@@ -68,7 +68,7 @@ const ube = new WrappedTokenInfo(
   []
 )
 
-export const Stake: React.FC = () => {
+export default function Stake() {
   const { t } = useTranslation()
 
   const history = useHistory()

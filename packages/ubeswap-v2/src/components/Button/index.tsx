@@ -15,6 +15,7 @@ const Base = styled.button<{
   padding: ${({ padding }) => (padding ? padding : '18px')};
   width: ${({ width }) => (width ? width : '100%')};
   font-weight: 500;
+  font-size: 1rem;
   text-align: center;
   border-radius: 20px;
   border-radius: ${({ borderRadius }) => borderRadius && borderRadius};

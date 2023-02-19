@@ -449,9 +449,13 @@ export default function LimitOrder() {
                       Approving <Loader stroke="white" />
                     </AutoRow>
                   ) : approvalSubmitted && orderBookApproval === ApprovalState.APPROVED ? (
-                    'Approved'
+                    <Text fontSize={16} fontWeight={500}>
+                      {'Approved'}
+                    </Text>
                   ) : (
-                    'Approve ' + (currencies[buying ? Field.PRICE : Field.TOKEN]?.symbol ?? '')
+                    <Text fontSize={16} fontWeight={500}>
+                      {'Approve ' + (currencies[buying ? Field.PRICE : Field.TOKEN]?.symbol ?? '')}
+                    </Text>
                   )}
                 </ButtonConfirmed>
                 <ButtonPrimary

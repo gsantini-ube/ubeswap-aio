@@ -49,7 +49,6 @@ const HeaderFrame = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 1rem;
   z-index: 2;
-  background-color: ${({ theme }) => theme.bg2};
 
   @media (max-width: 1115px) {
     grid-template-columns: 1fr;
