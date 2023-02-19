@@ -1,6 +1,3 @@
-import './i18n'
-import '@celo-tools/use-contractkit/lib/styles.css'
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 

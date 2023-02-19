@@ -5,7 +5,6 @@ const { getLoader, loaderByName } = require('@craco/craco')
 
 const packages = []
 packages.push(path.join(__dirname, '../ubeswap-header'))
-packages.push(path.join(__dirname, '../ubeswap-v3'))
 
 const now = Math.floor(new Date().getTime() / 1000)
 

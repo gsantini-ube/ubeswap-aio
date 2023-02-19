@@ -2,7 +2,7 @@ import { DappKitResponseStatus } from '@celo/utils'
 import { useContractKit } from '@celo-tools/use-contractkit'
 import { ErrorBoundary } from '@sentry/react'
 import React, { Suspense } from 'react'
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
+import { Route, Switch, useLocation } from 'react-router-dom'
 import { useDarkModeManager } from 'state/user/hooks'
 import styled from 'styled-components'
 import UbeswapHeader from 'ubeswap-header'
@@ -78,7 +78,6 @@ const Marginer = styled.div`
 const localStorageKey = 'valoraRedirect'
 
 export default function App() {
-  const history = useHistory()
   const curLocation = useLocation()
   const { address } = useContractKit()
   const [darkMode, toggleDarkMode] = useDarkModeManager()

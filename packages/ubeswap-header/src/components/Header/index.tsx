@@ -350,6 +350,7 @@ const StyledDrawerExternalLink = styled(StyledExternalLink).attrs({
   activeClassName,
 })<{ isActive?: boolean }>`
   text-decoration: none;
+  color: ${(props) => props.theme.text2} !important;
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
       display: flex;
 `}
