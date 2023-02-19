@@ -70,6 +70,7 @@ const MenuFlyout = styled.span`
 
 const MenuItem = styled(ExternalLink)`
   display: flex;
+  align-items: center;
   flex: 1;
   padding: 0.5rem 0.5rem;
   color: ${({ theme }) => theme.text2} !important;
@@ -85,6 +86,7 @@ const MenuItem = styled(ExternalLink)`
 
 const MenuItemInternal = styled(NavLink)`
   display: flex;
+  align-items: center;
   text-decoration: none;
   flex: 1;
   padding: 0.5rem 0.5rem;
