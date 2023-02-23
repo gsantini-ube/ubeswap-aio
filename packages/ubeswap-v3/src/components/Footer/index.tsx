@@ -1,10 +1,4 @@
-import { Trans } from "@lingui/macro";
-import { GasPrice } from "../../components/Header/GasPrice";
 import Polling from "../../components/Header/Polling";
-import { PoweredByAlgebra } from "../../components/Header/PoweredByAlgebra";
-import Loader from "../../components/Loader";
-import { BugReportLink, NetworkFailedCard } from "../../pages/styled";
-import { ExternalLink } from "react-feather";
 import "./index.scss";
 
 export default function Footer() {

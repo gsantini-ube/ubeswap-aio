@@ -1,5 +1,5 @@
 import { Percent, Token } from "@uniswap/sdk-core";
-import { SupportedLocale } from "../../../../constants/locales";
+import { SupportedLocale } from "../../constants/locales";
 import JSBI from "jsbi";
 import flatMap from "lodash.flatmap";
 import { useCallback, useMemo } from "react";
@@ -86,8 +86,8 @@ export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token]): Token {
             tokenB,
         }),
         18,
-        "QUICKSWAP-V2",
-        "QUICKSWAP V2"
+        "UBESWAP-V2",
+        "UBESWAP V2"
     );
 }
 

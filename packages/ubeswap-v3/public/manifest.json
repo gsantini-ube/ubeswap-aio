@@ -1,8 +1,11 @@
 {
   "background_color": "#fff",
   "display": "standalone",
-  "homepage_url": "https://dogechain.quickswap.exchange",
-  "providedBy": { "name": "Dogechain Quickswap", "url": "https://dogechain.quickswap.exchange" },
+  "homepage_url": "https://app.ubeswap.org",
+  "providedBy": {
+    "name": "Ubeswap",
+    "url": "https://app.ubeswap.org"
+  },
   "icons": [
     {
       "src": "./images/192x192_App_Icon.png",
@@ -18,10 +21,10 @@
     }
   ],
   "orientation": "portrait",
-  "name": "Quickswap",
-  "description": "Swap and provide liquidity on Quickswap",
+  "name": "Ubeswap",
+  "description": "Swap and provide liquidity on Ubeswap",
   "iconPath": "./images/256x256_App_Icon.svg",
-  "short_name": "Quickswap",
+  "short_name": "Ubeswap",
   "start_url": ".",
   "theme_color": "#ff007a"
 }
