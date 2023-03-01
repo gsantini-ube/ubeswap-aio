@@ -5,7 +5,7 @@ import React, { Suspense } from 'react'
 import { Route, Switch, useLocation } from 'react-router-dom'
 import { useDarkModeManager } from 'state/user/hooks'
 import styled from 'styled-components'
-import UbeswapHeader from 'ubeswap-header'
+import UbeswapHeader from 'ubeswap-components'
 import { isBanned } from 'utils/isBannedUser'
 
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'

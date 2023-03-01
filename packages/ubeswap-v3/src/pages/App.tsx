@@ -20,7 +20,7 @@ import Footer from "../components/Footer";
 // import { t, Trans } from "@lingui/macro";
 
 import "./index.scss";
-import UbeswapHeader from "ubeswap-header";
+import UbeswapHeader from "ubeswap-components";
 import AlgebraConfig from "../algebra.config";
 import styled from "styled-components/macro";
 import PoolBackground from "../assets/images/background-pool.jpg";
