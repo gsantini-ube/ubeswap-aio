@@ -2,7 +2,6 @@ import { parseBytes32String } from "@ethersproject/strings";
 import { Currency, Token } from "@uniswap/sdk-core";
 import { arrayify } from "ethers/lib/utils";
 import { useMemo } from "react";
-import { createTokenFilterFunction } from "../components/SearchModal/filtering";
 import { ExtendedEther, WMATIC_EXTENDED } from "../constants/tokens";
 import { TokenAddressMap, useAllLists, useCombinedActiveList, useInactiveListUrls } from "../state/lists/hooks";
 import { WrappedTokenInfo } from "../state/lists/wrappedTokenInfo";
@@ -14,6 +13,7 @@ import { useActiveWeb3React } from "./web3";
 import { useBytes32TokenContract, useTokenContract } from "./useContract";
 
 import AlgebraConfig from "../algebra.config";
+import { createTokenFilterFunction } from "ubeswap-components";
 
 // reduce token map into standard address <-> Token mapping, optionally include user added tokens
 function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean): { [address: string]: Token } {

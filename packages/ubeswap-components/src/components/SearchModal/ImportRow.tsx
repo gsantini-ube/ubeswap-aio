@@ -9,9 +9,10 @@ import { useIsTokenActive, useIsUserAddedToken } from 'hooks/Tokens'
 import useTheme from 'hooks/useTheme'
 import React, { CSSProperties } from 'react'
 import { CheckCircle } from 'react-feather'
-import { useCombinedInactiveList } from 'state/lists/hooks'
 import styled from 'styled-components'
 import { TYPE } from 'theme'
+
+import { useCombinedInactiveList } from '../../state/lists/hooks'
 
 const TokenSection = styled.div<{ dim?: boolean }>`
   padding: 4px 20px;

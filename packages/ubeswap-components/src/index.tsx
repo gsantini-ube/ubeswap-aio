@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import { CurrencyModalView } from './components/SearchModal/CurrencySearchModal'
+import { createTokenFilterFunction } from './components/SearchModal/filtering'
 import CurrencySearchModal from './pages/CurrencySearchModal'
 import UbeswapHeader from './pages/UbeswapHeader'
 
@@ -18,4 +20,4 @@ ReactDOM.render(
   document.getElementById('root')
 )
 
-export { CurrencySearchModal, UbeswapHeader }
+export { createTokenFilterFunction, CurrencyModalView, CurrencySearchModal, UbeswapHeader }

@@ -11,7 +11,7 @@ import { ImportList } from './ImportList'
 import { ImportToken } from './ImportToken'
 import Manage from './Manage'
 
-interface CurrencySearchModalProps {
+export interface CurrencySearchModalProps {
   isOpen: boolean
   onDismiss: () => void
   selectedCurrency?: Token | null

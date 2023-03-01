@@ -5,11 +5,11 @@ import "./index.scss";
 import CurrencyLogo from "../../../../components/CurrencyLogo";
 import { ChevronRight } from "react-feather";
 import { useCallback, useMemo, useState } from "react";
-import CurrencySearchModal from "../../../../components/SearchModal/CurrencySearchModal";
 import { useActiveWeb3React } from "../../../../hooks/web3";
 import { useCurrencyBalance } from "../../../../state/wallet/hooks";
 import useUSDCPrice, { useUSDCValue } from "../../../../hooks/useUSDCPrice";
 import { PriceFormats } from "../PriceFomatToggler";
+import { CurrencySearchModal } from "ubeswap-components";
 // import { t, Trans } from "@lingui/macro";
 
 interface ITokenCard {
@@ -54,9 +54,9 @@ export function TokenCard({ handleTokenSelection, currency, otherCurrency, price
                     selectedCurrency={currency}
                     otherSelectedCurrency={otherCurrency}
                     showCommonBases={true}
-                    showCurrencyAmount={true}
-                    disableNonToken={true}
-                ></CurrencySearchModal>
+                    // showCurrencyAmount={true}
+                    // disableNonToken={true}
+                />
             )}
             <div className="f mb-1">
                 <div className="token-card-logo">

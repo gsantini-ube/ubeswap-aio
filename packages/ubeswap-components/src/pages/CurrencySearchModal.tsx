@@ -3,16 +3,16 @@ import '@celo-tools/use-contractkit/lib/styles.css'
 import '../index.css'
 
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client'
-import { ChainId, ContractKitProvider } from '@celo-tools/use-contractkit'
+import { ContractKitProvider } from '@celo-tools/use-contractkit'
 import * as Sentry from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
-import { ChainId as ChainIdFromSDK, Token } from '@ubeswap/sdk'
-import CurrencySearchModalComponent from 'components/SearchModal/CurrencySearchModal'
+import { ChainId } from '@ubeswap/sdk'
 import React from 'react'
 import { isMobile } from 'react-device-detect'
 import ReactGA from 'react-ga'
 import { Provider } from 'react-redux'
 
+import CurrencySearchModalComponent, { CurrencySearchModalProps } from '../components/SearchModal/CurrencySearchModal'
 import { NETWORK_CHAIN_ID, NETWORK_CHAIN_NAME } from '../connectors/index'
 import { Alfajores, Mainnet } from '../networks'
 import store from '../state'
@@ -34,14 +34,14 @@ const client = new ApolloClient({
 
 const GOOGLE_ANALYTICS_IDS = {
   production: {
-    [ChainIdFromSDK.MAINNET]: 'UA-189817928-4',
-    [ChainIdFromSDK.ALFAJORES]: 'UA-189817928-5',
-    [ChainIdFromSDK.BAKLAVA]: 'UA-189817928-6',
+    [ChainId.MAINNET]: 'UA-189817928-4',
+    [ChainId.ALFAJORES]: 'UA-189817928-5',
+    [ChainId.BAKLAVA]: 'UA-189817928-6',
   },
   staging: {
-    [ChainIdFromSDK.MAINNET]: 'UA-189817928-2',
-    [ChainIdFromSDK.ALFAJORES]: 'UA-189817928-3',
-    [ChainIdFromSDK.BAKLAVA]: 'UA-189817928-7',
+    [ChainId.MAINNET]: 'UA-189817928-2',
+    [ChainId.ALFAJORES]: 'UA-189817928-3',
+    [ChainId.BAKLAVA]: 'UA-189817928-7',
   },
 }
 
@@ -109,17 +109,7 @@ function Updaters() {
   )
 }
 
-interface Props {
-  isOpen: boolean
-  onDismiss: () => void
-  selectedCurrency?: Token | null
-  onCurrencySelect: (currency: Token) => void
-  otherSelectedCurrency?: Token | null
-  showCommonBases?: boolean
-  chainId?: ChainId
-}
-
-export default function UbeswapHeader(props: Props) {
+export default function CurrencySearchModal(props: CurrencySearchModalProps) {
   return (
     <>
       <FixedGlobalStyle />
