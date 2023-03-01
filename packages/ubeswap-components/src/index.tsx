@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import CurrencySearchModal from './pages/CurrencySearchModal'
 import UbeswapHeader from './pages/UbeswapHeader'
 
 ReactDOM.render(
@@ -17,4 +18,4 @@ ReactDOM.render(
   document.getElementById('root')
 )
 
-export default UbeswapHeader
+export { CurrencySearchModal, UbeswapHeader }
