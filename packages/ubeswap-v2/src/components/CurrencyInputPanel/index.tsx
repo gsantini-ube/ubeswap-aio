@@ -4,6 +4,7 @@ import { darken } from 'polished'
 import React, { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+import { CurrencySearchModal } from 'ubeswap-components'
 
 import { ReactComponent as DropDown } from '../../assets/images/dropdown.svg'
 import useTheme from '../../hooks/useTheme'
@@ -13,7 +14,6 @@ import CurrencyLogo from '../CurrencyLogo'
 import DoubleCurrencyLogo from '../DoubleLogo'
 import { Input as NumericalInput } from '../NumericalInput'
 import { RowBetween } from '../Row'
-import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
 import { CurrencySelect } from './CurrencySelect'
 
 const InputRow = styled.div<{ selected: boolean }>`

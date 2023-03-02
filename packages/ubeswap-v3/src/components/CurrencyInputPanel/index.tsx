@@ -2,7 +2,6 @@ import { Pair } from "@uniswap/v2-sdk";
 import { Currency, CurrencyAmount, Percent, Token } from "@uniswap/sdk-core";
 import { ReactNode, useCallback, useMemo, useState } from "react";
 import { useCurrencyBalance } from "../../state/wallet/hooks";
-import CurrencySearchModal from "../SearchModal/CurrencySearchModal";
 import CurrencyLogo from "../CurrencyLogo";
 import DoubleCurrencyLogo from "../DoubleLogo";
 import { RowBetween, RowFixed } from "../Row";
@@ -21,10 +20,8 @@ interface CurrencyInputPanelProps {
     onMax?: () => void;
     showMaxButton: boolean;
     label?: ReactNode;
-    onCurrencySelect?: (currency: Currency) => void;
     currency?: WrappedCurrency | null;
     hideBalance?: boolean;
-    pair?: Pair | null;
     hideInput?: boolean;
     otherCurrency?: Currency | null;
     fiatValue?: CurrencyAmount<Token> | null;
@@ -49,7 +46,6 @@ export default function CurrencyInputPanel({
     onUserInput,
     onMax,
     showMaxButton,
-    onCurrencySelect,
     currency,
     otherCurrency,
     id,
@@ -59,7 +55,6 @@ export default function CurrencyInputPanel({
     fiatValue,
     priceImpact,
     hideBalance = false,
-    pair = null, // used for double token logo
     hideInput = false,
     locked = false,
     showBalance,
@@ -127,7 +122,7 @@ export default function CurrencyInputPanel({
                 <InputRow
                     hideCurrency={hideCurrency}
                     style={hideInput ? { borderRadius: "8px", padding: `${page === "pool" ? "0" : ""}` } : { padding: `${page === "pool" ? "0" : ""}` }}
-                    selected={!onCurrencySelect}
+                    selected={false}
                 >
                     {!hideCurrency && (
                         <CurrencySelect
@@ -139,54 +134,43 @@ export default function CurrencyInputPanel({
                             swap={swap}
                             disabled={shallow && page !== "addLiq"}
                             onClick={() => {
-                                if (onCurrencySelect) {
-                                    setModalOpen(true);
-                                }
+                                // if (onCurrencySelect) {
+                                //     setModalOpen(true);
+                                // }
                             }}
                         >
                             <Aligner centered={centered} title={balance ? balance.toSignificant(4) : ""}>
                                 <RowFixed>
-                                    {pair ? (
-                                        <span style={{ marginRight: "0.5rem" }}>
-                                            <DoubleCurrencyLogo currency0={pair.token0} currency1={pair.token1} size={24} margin={true} />
-                                        </span>
-                                    ) : currency ? (
-                                        <CurrencyLogo style={{ marginRight: "0.5rem" }} currency={currency} size={"24px"} />
-                                    ) : null}
-                                    {pair ? (
-                                        <StyledTokenName className="pair-name-container">
-                                            {pair?.token0.symbol}:{pair?.token1.symbol}
-                                        </StyledTokenName>
-                                    ) : (
-                                        <StyledTokenName className="token-symbol-container" active={Boolean(currency && currency.symbol)}>
-                                            {(currency && currency.symbol && currency.symbol.length > 20 ? (
-                                                currency.symbol.slice(0, 4) + "..." + currency.symbol.slice(currency.symbol.length - 5, currency.symbol.length)
-                                            ) : currency ? (
-                                                <div style={{ display: "flex", alignItems: "center" }}>
-                                                    <span>
-                                                        {shallow && showBalance && balance && page === "addLiq" && +balance.toSignificant(4) < 0.0001
-                                                            ? `Balance: < 0.0001 ${currency.symbol}`
-                                                            : shallow && showBalance && balance
-                                                            ? `Balance: ${balanceString} ${currency.symbol}`
-                                                            : currency.symbol}
+                                    {currency ? <CurrencyLogo style={{ marginRight: "0.5rem" }} currency={currency} size={"24px"} /> : null}
+
+                                    <StyledTokenName className="token-symbol-container" active={Boolean(currency && currency.symbol)}>
+                                        {(currency && currency.symbol && currency.symbol.length > 20 ? (
+                                            currency.symbol.slice(0, 4) + "..." + currency.symbol.slice(currency.symbol.length - 5, currency.symbol.length)
+                                        ) : currency ? (
+                                            <div style={{ display: "flex", alignItems: "center" }}>
+                                                <span>
+                                                    {shallow && showBalance && balance && page === "addLiq" && +balance.toSignificant(4) < 0.0001
+                                                        ? `Balance: < 0.0001 ${currency.symbol}`
+                                                        : shallow && showBalance && balance
+                                                        ? `Balance: ${balanceString} ${currency.symbol}`
+                                                        : currency.symbol}
+                                                </span>
+                                                {showBalance && balance && !shallow ? (
+                                                    <span style={{ position: "absolute", right: 0, fontSize: "13px" }} title={balance.toExact()}>
+                                                        {balanceString}
                                                     </span>
-                                                    {showBalance && balance && !shallow ? (
-                                                        <span style={{ position: "absolute", right: 0, fontSize: "13px" }} title={balance.toExact()}>
-                                                            {balanceString}
+                                                ) : (
+                                                    showBalance &&
+                                                    !balance &&
+                                                    account && (
+                                                        <span style={{ position: "absolute", right: 0 }}>
+                                                            <Loader />
                                                         </span>
-                                                    ) : (
-                                                        showBalance &&
-                                                        !balance &&
-                                                        account && (
-                                                            <span style={{ position: "absolute", right: 0 }}>
-                                                                <Loader />
-                                                            </span>
-                                                        )
-                                                    )}
-                                                </div>
-                                            ) : null) || "Select a token"}
-                                        </StyledTokenName>
-                                    )}
+                                                    )
+                                                )}
+                                            </div>
+                                        ) : null) || "Select a token"}
+                                    </StyledTokenName>
                                 </RowFixed>
                             </Aligner>
                         </CurrencySelect>
@@ -235,18 +219,6 @@ export default function CurrencyInputPanel({
                     )
                 )}
             </Container>
-            {onCurrencySelect && (
-                <CurrencySearchModal
-                    isOpen={modalOpen}
-                    onDismiss={handleDismissSearch}
-                    onCurrencySelect={onCurrencySelect}
-                    selectedCurrency={currency}
-                    otherSelectedCurrency={otherCurrency}
-                    showCommonBases={showCommonBases}
-                    showCurrencyAmount={showCurrencyAmount}
-                    disableNonToken={disableNonToken}
-                />
-            )}
         </InputPanel>
     );
 }

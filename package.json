@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "workspaces": [
-    "packages/ubeswap-header",
+    "packages/ubeswap-components",
     "packages/ubeswap-v2",
     "packages/ubeswap-v3"
   ],

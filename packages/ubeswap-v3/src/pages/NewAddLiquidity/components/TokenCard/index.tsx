@@ -5,11 +5,12 @@ import "./index.scss";
 import CurrencyLogo from "../../../../components/CurrencyLogo";
 import { ChevronRight } from "react-feather";
 import { useCallback, useMemo, useState } from "react";
-import CurrencySearchModal from "../../../../components/SearchModal/CurrencySearchModal";
 import { useActiveWeb3React } from "../../../../hooks/web3";
 import { useCurrencyBalance } from "../../../../state/wallet/hooks";
 import useUSDCPrice, { useUSDCValue } from "../../../../hooks/useUSDCPrice";
 import { PriceFormats } from "../PriceFomatToggler";
+import { CurrencySearchModal } from "ubeswap-components";
+import { Token as UbeswapToken, ChainId } from "@ubeswap/sdk";
 // import { t, Trans } from "@lingui/macro";
 
 interface ITokenCard {
@@ -44,19 +45,27 @@ export function TokenCard({ handleTokenSelection, currency, otherCurrency, price
         return "0";
     }, [priceFormat, balance, balanceUSD]);
 
+    const selectedCurrency: UbeswapToken | undefined =
+        currency?.wrapped && new UbeswapToken(currency.wrapped.chainId as ChainId, currency.wrapped.address!, currency.wrapped.decimals!, currency.wrapped.symbol, currency.wrapped.name);
+
+    const otherSelectedCurrency: UbeswapToken | undefined =
+        otherCurrency?.wrapped &&
+        new UbeswapToken(otherCurrency.wrapped.chainId as ChainId, otherCurrency.wrapped.address!, otherCurrency.wrapped.decimals!, otherCurrency.wrapped.symbol, otherCurrency.wrapped.name);
+
     return (
         <div className="token-card p-1 mxs_w-100 mm_w-100" onClick={() => toggleSelectModal(true)}>
             {selectModal && (
                 <CurrencySearchModal
                     isOpen={selectModal}
                     onDismiss={handleDismissSearch}
-                    onCurrencySelect={handleTokenSelection}
-                    selectedCurrency={currency}
-                    otherSelectedCurrency={otherCurrency}
+                    onCurrencySelect={(value: UbeswapToken) => {
+                        const currency: Token = new Token(value.chainId, value.address, value.decimals, value.symbol, value.name);
+                        handleTokenSelection(currency);
+                    }}
+                    selectedCurrency={selectedCurrency}
+                    otherSelectedCurrency={otherSelectedCurrency}
                     showCommonBases={true}
-                    showCurrencyAmount={true}
-                    disableNonToken={true}
-                ></CurrencySearchModal>
+                />
             )}
             <div className="f mb-1">
                 <div className="token-card-logo">

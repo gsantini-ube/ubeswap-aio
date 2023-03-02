@@ -1,12 +1,11 @@
 import ApeModeQueryParamReader from "../hooks/useApeModeQueryParamReader";
-import { Route, Switch, useHistory, useLocation } from "react-router-dom";
+import { Route, Switch, useHistory, useLocation, Redirect } from "react-router-dom";
 import ErrorBoundary from "../components/ErrorBoundary";
 import Popups from "../components/Popups";
 import Web3ReactManager from "../components/Web3ReactManager";
 import DarkModeQueryParamReader from "../theme/DarkModeQueryParamReader";
 import { RedirectDuplicateTokenIdsNew } from "./AddLiquidity/redirects";
 import RemoveLiquidityV3 from "./RemoveLiquidity/V3";
-import { RedirectPathToPoolOnly } from "./Swap/redirects";
 import { Pool } from "../lib/src";
 import React, { useEffect, useState } from "react";
 import CautionModal from "../components/CautionModal";
@@ -20,7 +19,7 @@ import Footer from "../components/Footer";
 // import { t, Trans } from "@lingui/macro";
 
 import "./index.scss";
-import UbeswapHeader from "ubeswap-header";
+import { UbeswapHeader } from "ubeswap-components";
 import AlgebraConfig from "../algebra.config";
 import styled from "styled-components/macro";
 import PoolBackground from "../assets/images/background-pool.jpg";
@@ -142,7 +141,7 @@ export default function App() {
                                         <Route exact strict path="/increase/:currencyIdA?/:currencyIdB?/:tokenId?" component={AddLiquidity} />
                                         <Route exact strict path="/remove/:tokenId" component={RemoveLiquidityV3} />
 
-                                        <Route component={RedirectPathToPoolOnly} />
+                                        <Redirect to={"/pool"} />
                                     </Switch>
                                 </React.Suspense>
                                 <Marginer />

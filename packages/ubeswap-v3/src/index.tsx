@@ -26,7 +26,7 @@ import GasUpdater from "./state/application/gasUpdater";
 import "./assets/styles/index.scss";
 
 import AlgebraConfig from "./algebra.config";
-import { Alfajores, Mainnet } from "ubeswap-header/src/networks";
+import { Alfajores, Mainnet } from "ubeswap-components/src/networks";
 
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName);
 
