@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
 import { axisBottom, create, max, scaleBand, scaleLinear, select } from "d3";
 import { ProcessedData } from "../../models/interfaces";
-import { t, Trans } from "@lingui/macro";
+// import { t, Trans } from "@lingui/macro";
 
 interface BarChartProps {
     data: ProcessedData[] | undefined;
@@ -120,7 +120,7 @@ export default function BarChart({ data, activeTickIdx, dimensions }: BarChartPr
                 .attr("transform", `translate(${(xScale(data[activeTickIdxInRange].price0) ?? 0) + 15}, ${-5})`)
                 .attr("fill", "var(--green)")
                 .attr("font-size", "12px")
-                .property("innerHTML", t`Current price`);
+                .property("innerHTML", `Current price`);
         }
 
         svg.append("g")
@@ -159,12 +159,12 @@ export default function BarChart({ data, activeTickIdx, dimensions }: BarChartPr
                 const isLower1 = v.price1 < 0.01;
                 const isLowerTVL = v.tvlToken0 < 0.01;
 
-                InfoRectPrice0.property("innerHTML", t`${data[0].token0} Price: ${isLower0 ? v.price0.toFixed(4) : v.price0.toFixed(3)} ${data[0].token1}`);
-                InfoRectPrice1.property("innerHTML", t`${data[0].token1} Price: ${isLower1 ? v.price1.toFixed(4) : v.price1.toFixed(3)} ${data[0].token0}`);
+                InfoRectPrice0.property("innerHTML", `${data[0].token0} Price: ${isLower0 ? v.price0.toFixed(4) : v.price0.toFixed(3)} ${data[0].token1}`);
+                InfoRectPrice1.property("innerHTML", `${data[0].token1} Price: ${isLower1 ? v.price1.toFixed(4) : v.price1.toFixed(3)} ${data[0].token0}`);
 
                 InfoRectPriceLocked.property(
                     "innerHTML",
-                    t`${v.index < activeTickIdxInRange ? token0 : token1} Locked: ${isLowerTVL ? v.tvlToken0.toFixed(4) : v.tvlToken0.toFixed(2)} ${v.index >= activeTickIdxInRange ? token1 : token0}`
+                    `${v.index < activeTickIdxInRange ? token0 : token1} Locked: ${isLowerTVL ? v.tvlToken0.toFixed(4) : v.tvlToken0.toFixed(2)} ${v.index >= activeTickIdxInRange ? token1 : token0}`
                 );
             })
             .on("mouseleave", (d, v) => {

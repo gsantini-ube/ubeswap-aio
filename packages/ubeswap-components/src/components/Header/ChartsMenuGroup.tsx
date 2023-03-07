@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
@@ -44,6 +45,20 @@ const MenuItem = styled(ExternalLink)`
   }
 `
 
+const MenuItemInternalLink = styled(NavLink)`
+  flex: 1;
+  padding: 0.5rem 0.5rem;
+  color: ${({ theme }) => theme.text2} !important;
+  :hover {
+    color: ${({ theme }) => theme.text1} !important;
+    cursor: pointer;
+    text-decoration: none !important;
+  }
+  > svg {
+    margin-right: 8px;
+  }
+`
+
 export default function ChartsMenuGroup() {
   const node = useRef<HTMLDivElement>()
   const open = useModalOpen(ApplicationModal.CHARTS)
@@ -58,8 +73,18 @@ export default function ChartsMenuGroup() {
       {open && (
         <MenuFlyout>
           <MenuItem id="link" href="https://info.ubeswap.org/">
-            Analytics
+            V2 Analytics
           </MenuItem>
+          <MenuItemInternalLink
+            id="link"
+            to={'#'}
+            onClick={(e) => {
+              e.preventDefault()
+              location.href = '/v3/#/info'
+            }}
+          >
+            V3 Analytics
+          </MenuItemInternalLink>
           <MenuItem id="link" href="https://celotracker.com">
             Celo Tracker
           </MenuItem>
