@@ -98,7 +98,7 @@ function TransactionSubmittedContent({ onDismiss, chainId, hash, currencyToAdd, 
                 )}
                 <ButtonPrimary onClick={onDismiss} style={{ margin: "20px 0 0 0", color: "white" }}>
                     <Text fontWeight={500} fontSize={20}>
-                        {inline ? Return : Close}
+                        {inline ? "Return" : "Close"}
                     </Text>
                 </ButtonPrimary>
             </AutoColumn>
