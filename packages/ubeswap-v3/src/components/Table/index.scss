@@ -12,7 +12,7 @@
     cursor: pointer;
     align-items: center;
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
 
 
    &--center {
@@ -101,7 +101,7 @@
         text-align: left;
         align-items: center;
         display: flex;
-        justify-content: start;
+        justify-content: flex-start;
       }
   }
 }

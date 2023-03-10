@@ -5,7 +5,7 @@ import { ChartType } from "../../models/enums";
 import { isMobile, isTablet } from "react-device-detect";
 import { FeeChart, FeeSubgraph, PoolHourData, PriceRangeChart } from "../../models/interfaces";
 import { ChartToken } from "../../models/enums/poolInfoPage";
-import { Trans } from "@lingui/macro";
+// import { Trans } from "@lingui/macro";
 import { Token } from "@uniswap/sdk-core";
 import Toggle from "../Toggle";
 import "./index.scss";
@@ -141,12 +141,7 @@ export default function FeeChartRangeInput({ fetchedData, refreshing, span, type
                     <div>
                         {type === ChartType.PRICE && (
                             <div className={"fee-chart__price-info"}>
-                                <Toggle
-                                    isActive={!!token}
-                                    toggle={() => setToken(token === ChartToken.TOKEN0 ? 1 : 0)}
-                                    checked={<Trans>{token0?.symbol}</Trans>}
-                                    unchecked={<Trans>{token1?.symbol}</Trans>}
-                                />
+                                <Toggle isActive={!!token} toggle={() => setToken(token === ChartToken.TOKEN0 ? 1 : 0)} checked={token0?.symbol} unchecked={token1?.symbol} />
                             </div>
                         )}
                         {type === ChartType.PRICE && account && (

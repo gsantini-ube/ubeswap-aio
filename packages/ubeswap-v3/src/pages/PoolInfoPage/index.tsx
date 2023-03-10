@@ -18,7 +18,7 @@ import { ArrowLeft } from "react-feather";
 import { NavLink } from "react-router-dom";
 import Card from "../../shared/components/Card/Card";
 import { useActiveWeb3React } from "../../hooks/web3";
-import { t, Trans } from "@lingui/macro";
+// import { t, Trans } from "@lingui/macro";
 
 interface PoolInfoPageProps {
     totalStats: any;
@@ -84,38 +84,38 @@ export default function PoolInfoPage({
     const chartTypes = [
         {
             type: ChartType.VOLUME,
-            title: t`Volume`,
+            title: `Volume`,
         },
         {
             type: ChartType.TVL,
-            title: t`TVL`,
+            title: `TVL`,
         },
         {
             type: ChartType.FEES,
-            title: t`Pool fee`,
+            title: `Pool fee`,
         },
         {
             type: ChartType.LIQUIDITY,
-            title: t`Liquidity`,
+            title: `Liquidity`,
         },
         {
             type: ChartType.PRICE,
-            title: t`Price`,
+            title: `Price`,
         },
     ];
 
     const chartSpans = [
         {
             type: ChartSpan.DAY,
-            title: t`Day`,
+            title: `Day`,
         },
         {
             type: ChartSpan.WEEK,
-            title: t`Week`,
+            title: `Week`,
         },
         {
             type: ChartSpan.MONTH,
-            title: t`Month`,
+            title: `Month`,
         },
     ];
 
@@ -177,9 +177,7 @@ export default function PoolInfoPage({
         <div className={"mb-3"}>
             <NavLink className={"f mb-1 c-p hover-op trans-op w-fc"} to={"/info/pools"}>
                 <ArrowLeft className={"mr-05"} size={"1rem"} />
-                <span>
-                    <Trans>Back to pools table</Trans>
-                </span>
+                <span>Back to pools table</span>
             </NavLink>
             {poolResult ? (
                 <Card classes={"p-2 br-24 mxs_p-1"}>

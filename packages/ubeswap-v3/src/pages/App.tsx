@@ -28,6 +28,7 @@ import FarmBackground from "../assets/images/background-farm.jpg";
 const AddLiquidity = React.lazy(() => import("./AddLiquidity"));
 const FarmingPage = React.lazy(() => import("./Farming/FarmingPage"));
 const PoolPage = React.lazy(() => import("./Pool"));
+const InfoPage = React.lazy(() => import("./InfoPage"));
 const PositionPage = React.lazy(() => import("./Pool/PositionPage"));
 
 const BackgroundImageContainer = styled.div<{ page: string }>`
@@ -125,7 +126,7 @@ export default function App() {
                                 <Popups />
                                 <React.Suspense fallback={<p>Loading...</p>}>
                                     <Switch>
-                                        {/* <Route strict path="/info" component={InfoPage} /> */}
+                                        <Route strict path="/info" component={InfoPage} />
 
                                         <Route strict path="/farm" component={FarmingPage} />
 
