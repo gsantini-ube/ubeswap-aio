@@ -608,11 +608,11 @@ export default function Header({
                   V2 Analytics
                 </StyledDrawerExternalLink>
               </StyledSubMenuItem>
-              <StyledSubMenuItem>
+              {/* <StyledSubMenuItem>
                 <StyledDrawerExternalLink id={`charts-analytics-drawer-nav-link`} href={'https://info.ubeswap.org/'}>
                   V3 Analytics
                 </StyledDrawerExternalLink>
-              </StyledSubMenuItem>
+              </StyledSubMenuItem> */}
               <StyledSubMenuItem>
                 <StyledDrawerExternalLink id={`charts-celo-tracker-drawer-nav-link`} href={'https://celotracker.com/'}>
                   Celo Tracker
