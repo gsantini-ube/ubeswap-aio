@@ -2,8 +2,8 @@ import { useEffect, useMemo } from "react";
 import { useLocation } from "react-router-dom";
 import { StatCard } from "./StatCard";
 import "./index.scss";
-import { t, Trans } from "@lingui/macro";
-import { AlertCircle } from "react-feather";
+// import { t, Trans } from "@lingui/macro";
+// import { AlertCircle } from "react-feather";
 
 interface InfoTotalStatsProps {
     data: any;
@@ -55,10 +55,10 @@ export function InfoTotalStats({ data, isLoading, refreshHandler, blocksFetched,
     return (
         <div>
             <div className={"total-stats-wrapper"}>
-                <StatCard isLoading={isLoading} data={_data?.tvlUSD} title={t`Total Value Locked`} format style={"ms_m-0 mxs_m-0"} />
-                <StatCard isLoading={isLoading} data={_data?.volumeUSD} title={t`Volume 24H`} format style={"ml-1 ms_m-0 mxs_m-0"} />
-                <StatCard isLoading={isLoading} data={_data?.feesCollected} title={t`Fees Collected 24H`} format style={"ml-1 ms_m-0 mxs_m-0"} />
-                <StatCard isLoading={isLoading} data={_data?.txCount} title={t`Transactions 24H`} style={"ml-1 ms_m-0 mxs_m-0"} />
+                <StatCard isLoading={isLoading} data={_data?.tvlUSD} title={`Total Value Locked`} format style={"ms_m-0 mxs_m-0"} />
+                <StatCard isLoading={isLoading} data={_data?.volumeUSD} title={`Volume 24H`} format style={"ml-1 ms_m-0 mxs_m-0"} />
+                <StatCard isLoading={isLoading} data={_data?.feesCollected} title={`Fees Collected 24H`} format style={"ml-1 ms_m-0 mxs_m-0"} />
+                <StatCard isLoading={isLoading} data={_data?.txCount} title={`Transactions 24H`} style={"ml-1 ms_m-0 mxs_m-0"} />
             </div>
         </div>
     );

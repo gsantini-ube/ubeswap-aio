@@ -8,7 +8,7 @@ import { useHandleArrow } from "../../hooks/useHandleArrow";
 import { TokenRow } from "./TokenRow";
 import Table from "../Table";
 import TableHeader from "../Table/TableHeader";
-import { t, Trans } from "@lingui/macro";
+// import { t, Trans } from "@lingui/macro";
 
 interface InfoTokensProps {
     data: any;
@@ -19,23 +19,23 @@ interface InfoTokensProps {
 
 const sortFields = [
     {
-        title: t`Name`,
+        title: `Name`,
         value: "name",
     },
     {
-        title: t`Price`,
+        title: `Price`,
         value: "priceUSD",
     },
     {
-        title: t`Price Change`,
+        title: `Price Change`,
         value: "priceUSDChange",
     },
     {
-        title: t`Volume 24H`,
+        title: `Volume 24H`,
         value: "volumeUSD",
     },
     {
-        title: t`TVL`,
+        title: `TVL`,
         value: "tvlUSD",
     },
 ];
@@ -96,22 +96,12 @@ export function InfoTokens({ data, fetchHandler, blocksFetched }: InfoTokensProp
         <div style={{ overflow: "overlay" }}>
             <div className={"tokens-table-wrapper"}>
                 <Table gridClass={"grid-tokens-table"} sortIndex={sortIndex} sortField={sortField} sortDirection={sortDirection} data={_data}>
-                <TableHeader gridClass={"grid-tokens-table"} sortFields={sortFields} handleSort={handleSort} arrow={arrow}>
-                        <span className={"table-header__item"}>
-                            <Trans>Name</Trans>
-                        </span>
-                        <span className={"table-header__item table-header__item--center"}>
-                            <Trans>Price</Trans>
-                        </span>
-                        <span className={"table-header__item table-header__item--center"}>
-                            <Trans>Price Change</Trans>
-                        </span>
-                        <span className={"table-header__item table-header__item--center"}>
-                            <Trans>Volume 24H</Trans>
-                        </span>
-                        <span className={"table-header__item table-header__item--center"}>
-                            <Trans>TVL</Trans>
-                        </span>
+                    <TableHeader gridClass={"grid-tokens-table"} sortFields={sortFields} handleSort={handleSort} arrow={arrow}>
+                        <span className={"table-header__item"}>Name</span>
+                        <span className={"table-header__item table-header__item--center"}>Price</span>
+                        <span className={"table-header__item table-header__item--center"}>Price Change</span>
+                        <span className={"table-header__item table-header__item--center"}>Volume 24H</span>
+                        <span className={"table-header__item table-header__item--center"}>TVL</span>
                     </TableHeader>
                 </Table>
             </div>

@@ -35,6 +35,10 @@ const MenuItem = styled(NavLink)`
   padding: 0.5rem 0.5rem;
   color: ${({ theme }) => theme.text2};
   text-decoration: none;
+  &.disabled {
+    color: ${({ theme }) => theme.text3};
+    pointer-events: none;
+  }
   :hover {
     color: ${({ theme }) => theme.text1};
     cursor: pointer;
@@ -71,6 +75,7 @@ export default function FarmMenuGroup() {
             V2
           </MenuItem>
           <MenuItem
+            className="disabled"
             id="link"
             to={'#'}
             onClick={(e) => {

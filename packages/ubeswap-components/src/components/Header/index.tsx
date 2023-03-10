@@ -204,6 +204,11 @@ export const StyledNavLink = styled(NavLink).attrs({
     color: ${({ theme }) => theme.text1};
   }
 
+  &.disabled {
+    pointer-events: none;
+    color: ${({ theme }) => theme.text3};
+  }
+
   :hover,
   :focus {
     color: ${({ theme }) => darken(0.1, theme.text1)};
@@ -456,34 +461,6 @@ export default function Header({
           >
             {t('limitOrder')}
           </StyledNavLink>
-          {/* <StyledNavLinkExtraSmall
-            id={`pool-nav-link`}
-            to={'#'}
-            onClick={(e) => {
-              e.preventDefault()
-              menuItemClicked('pool')
-            }}
-            isActive={(match, { pathname }) =>
-              pathname.startsWith('/add') ||
-              pathname.startsWith('/remove') ||
-              pathname.startsWith('/create') ||
-              pathname.startsWith('/find') ||
-              pathname.includes('/pool')
-            }
-          >
-            {t('pool')}
-          </StyledNavLinkExtraSmall>
-          <StyledNavLinkExtraSmall
-            id="farm-nav-link"
-            to={'#'}
-            onClick={(e) => {
-              e.preventDefault()
-              menuItemClicked('farm')
-            }}
-            isActive={(match, { pathname }) => pathname.includes('farm')}
-          >
-            {t('farm')}
-          </StyledNavLinkExtraSmall> */}
           <PoolMenuGroup />
           <FarmMenuGroup />
           <BridgeMenuGroup />
@@ -575,6 +552,7 @@ export default function Header({
               </StyledSubMenuItem>
               <StyledSubMenuItem>
                 <StyledNavLink
+                  className="disabled"
                   id={`stake-drawer-nav-link`}
                   to={'/farm'}
                   onClick={(e) => {
@@ -627,9 +605,14 @@ export default function Header({
               </StyledMenuItem>
               <StyledSubMenuItem>
                 <StyledDrawerExternalLink id={`charts-analytics-drawer-nav-link`} href={'https://info.ubeswap.org/'}>
-                  Analytics
+                  V2 Analytics
                 </StyledDrawerExternalLink>
               </StyledSubMenuItem>
+              {/* <StyledSubMenuItem>
+                <StyledDrawerExternalLink id={`charts-analytics-drawer-nav-link`} href={'https://info.ubeswap.org/'}>
+                  V3 Analytics
+                </StyledDrawerExternalLink>
+              </StyledSubMenuItem> */}
               <StyledSubMenuItem>
                 <StyledDrawerExternalLink id={`charts-celo-tracker-drawer-nav-link`} href={'https://celotracker.com/'}>
                   Celo Tracker

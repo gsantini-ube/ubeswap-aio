@@ -10,7 +10,7 @@ import { Apr } from "./AprHeader";
 import { useHandleSort } from "../../hooks/useHandleSort";
 import { useHandleArrow } from "../../hooks/useHandleArrow";
 import TableHeader from "../Table/TableHeader";
-import { t, Trans } from "@lingui/macro";
+// import { t, Trans } from "@lingui/macro";
 
 interface InfoPoolsProps {
     data: any;
@@ -21,35 +21,35 @@ interface InfoPoolsProps {
 
 const sortFields = [
     {
-        title: t`Pool`,
+        title: `Pool`,
         value: "pool",
     },
     {
-        title: t`Volume 24H`,
+        title: `Volume 24H`,
         value: "volumeUSD",
     },
     {
-        title: t`Volume 7D`,
+        title: `Volume 7D`,
         value: "volumeUSDWeek",
     },
     // {
-    //     title: t`Volume 1M`,
+    //     title: `Volume 1M`,
     //     value: "volumeUSDMonth",
     // },
     {
-        title: t`TVL`,
+        title: `TVL`,
         value: "tvlUSD",
     },
     // {
-    //     title: t`Txs 24H`,
+    //     title: `Txs 24H`,
     //     value: "txCount",
     // },
     {
-        title: t`🚀 APR`,
+        title: `🚀 APR`,
         value: "apr",
     },
     {
-        title: t`🔥 Farming`,
+        title: `🔥 Farming`,
         value: "farmingApr",
     },
 ];
@@ -132,30 +132,20 @@ export function InfoPools({ data, fetchHandler, blocksFetched }: InfoPoolsProps)
             <div className={"w-100 pools-table-wrapper"}>
                 <Table gridClass={"grid-pools-table"} sortIndex={sortIndex} sortDirection={sortDirection} sortField={sortField} data={_data}>
                     <TableHeader arrow={arrow} sortFields={sortFields} handleSort={handleSort} gridClass={"grid-pools-table"}>
-                        <span className={"table-header__item"}>
-                            <Trans>Pool</Trans>
-                        </span>
-                        <span className={"table-header__item table-header__item--center"}>
-                            <Trans>Volume 24H</Trans>
-                        </span>
-                        <span className={"table-header__item table-header__item--center"}>
-                            <Trans>Volume 7D</Trans>
-                        </span>
+                        <span className={"table-header__item"}>Pool</span>
+                        <span className={"table-header__item table-header__item--center"}>Volume 24H</span>
+                        <span className={"table-header__item table-header__item--center"}>Volume 7D</span>
                         {/* <span className={"table-header__item table-header__item--center"}>
-                            <Trans>Volume 1M</Trans>
+                            Volume 1M
                         </span> */}
-                        <span className={"table-header__item table-header__item--center"}>
-                            <Trans>TVL</Trans>
-                        </span>
+                        <span className={"table-header__item table-header__item--center"}>TVL</span>
                         {/* <span className={"table-header__item table-header__item--center"}>
-                            <Trans>Txs 24H</Trans>
+                            Txs 24H
                         </span> */}
                         <span className={"table-header__item table-header__item--center"}>
                             <Apr />
                         </span>
-                        <span className={"table-header__item table-header__item--center"}>
-                            <Trans>🔥 Farming</Trans>
-                        </span>
+                        <span className={"table-header__item table-header__item--center"}>🔥 Farming</span>
                     </TableHeader>
                 </Table>
             </div>
