@@ -10,8 +10,6 @@ import { isBanned } from 'utils/isBannedUser'
 
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
 // import Header from '../components/Header'
-import Polling from '../components/Header/Polling'
-import URLWarning from '../components/Header/URLWarning'
 import Popups from '../components/Popups'
 import DarkModeQueryParamReader from '../theme/DarkModeQueryParamReader'
 import { getMobileOperatingSystem, Mobile } from '../utils/mobile'
@@ -128,13 +126,11 @@ export default function App() {
             }}
           />
         </UbeswapHeaderWrapper>
-        <URLWarning />
         {/* <HeaderWrapper>
           <Header />
         </HeaderWrapper> */}
         <BodyWrapper>
           <Popups />
-          <Polling />
           <ErrorBoundary fallback={<p>An unexpected error occured on this part of the page. Please reload.</p>}>
             <Switch>
               <Route exact strict path="/swap" component={Swap} />
