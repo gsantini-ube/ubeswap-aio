@@ -255,7 +255,11 @@ const StyledExternalLink = styled(ExternalLink).attrs({
 
   ${({ theme }) => theme.mediaWidth.upToExtraSmall`
       display: none;
-`}
+  `}
+
+  @media (max-width: 320px) {
+    margin: 0 8px;
+  }
 `
 
 export const StyledMenuButton = styled.button`
@@ -552,7 +556,7 @@ export default function Header({
               </StyledSubMenuItem>
               <StyledSubMenuItem>
                 <StyledNavLink
-                  className="disabled"
+                  // className="disabled"
                   id={`stake-drawer-nav-link`}
                   to={'/farm'}
                   onClick={(e) => {
@@ -608,11 +612,18 @@ export default function Header({
                   V2 Analytics
                 </StyledDrawerExternalLink>
               </StyledSubMenuItem>
-              {/* <StyledSubMenuItem>
-                <StyledDrawerExternalLink id={`charts-analytics-drawer-nav-link`} href={'https://info.ubeswap.org/'}>
+              <StyledSubMenuItem>
+                <StyledNavLink
+                  id={'charts-analytics-drawer-nav-link'}
+                  to={'#'}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    location.href = '/v3/#/info'
+                  }}
+                >
                   V3 Analytics
-                </StyledDrawerExternalLink>
-              </StyledSubMenuItem> */}
+                </StyledNavLink>
+              </StyledSubMenuItem>
               <StyledSubMenuItem>
                 <StyledDrawerExternalLink id={`charts-celo-tracker-drawer-nav-link`} href={'https://celotracker.com/'}>
                   Celo Tracker

@@ -14,7 +14,8 @@
     "build": "npm run build:local",
     "build:local": "npm run build:local:v2 && npm run build:local:v3",
     "build:local:v2": "npm run build:local --workspace=ubeswap-v2",
-    "build:local:v3": "npm run build:local --workspace=ubeswap-v3"
+    "build:local:v3": "npm run build:local --workspace=ubeswap-v3",
+    "typechain": "npm run typechain --workspace=ubeswap-v2"
   },
   "devDependencies": {
     "@types/rebass": "^4.0.10"
