@@ -49,10 +49,10 @@ const MenuItemInternalLink = styled(NavLink)`
   flex: 1;
   padding: 0.5rem 0.5rem;
   color: ${({ theme }) => theme.text2} !important;
+  text-decoration: none !important;
   :hover {
     color: ${({ theme }) => theme.text1} !important;
     cursor: pointer;
-    text-decoration: none !important;
   }
   > svg {
     margin-right: 8px;
