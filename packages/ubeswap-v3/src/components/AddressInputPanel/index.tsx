@@ -1,4 +1,3 @@
-import { t, Trans } from "@lingui/macro";
 import { ReactNode, useCallback, useContext } from "react";
 import { ThemeContext } from "styled-components/macro";
 import useENS from "../../hooks/useENS";
@@ -47,11 +46,11 @@ export default function AddressInputPanel({
                     <AutoColumn gap="md">
                         <RowBetween>
                             <TYPE.black color={theme.text2} fontWeight={500} fontSize={14}>
-                                {label ?? <Trans>Recipient</Trans>}
+                                {label ?? "Recipient"}
                             </TYPE.black>
                             {address && chainId && (
                                 <ExternalLink href={getExplorerLink(chainId, name ?? address, ExplorerDataType.ADDRESS)} style={{ fontSize: "14px" }}>
-                                    <Trans>(View on Explorer)</Trans>
+                                    (View on Explorer)
                                 </ExternalLink>
                             )}
                         </RowBetween>
@@ -62,7 +61,7 @@ export default function AddressInputPanel({
                             autoCorrect="off"
                             autoCapitalize="off"
                             spellCheck="false"
-                            placeholder={placeholder ?? t`Wallet Address or ENS name`}
+                            placeholder={placeholder ?? `Wallet Address or ENS name`}
                             error={error}
                             pattern="^(0x[a-fA-F0-9]{40})$"
                             onChange={handleInput}

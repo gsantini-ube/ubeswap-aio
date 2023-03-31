@@ -14,7 +14,7 @@ import { FiatValue } from "../CurrencyInputPanel/FiatValue";
 import CurrencyLogo from "../CurrencyLogo";
 import { RowBetween, RowFixed } from "../Row";
 import { SwapModalHeaderArrowWrapper, SwapShowAcceptChanges, TruncatedText } from "./styled";
-import { Trans } from "@lingui/macro";
+// import { Trans } from "@lingui/macro";
 import { AdvancedSwapDetails } from "./AdvancedSwapDetails";
 import { LightCard } from "../Card";
 import TradePrice from "../swap/TradePrice";
@@ -41,9 +41,7 @@ export default function SwapModalHeader({ trade, allowedSlippage, recipient, sho
         <div>
             <Card isDark classes={"p-1 br-12 mv-05"}>
                 <div className={"flex-s-between mb-05"}>
-                    <span className={"fs-085"}>
-                        <Trans>From</Trans>
-                    </span>
+                    <span className={"fs-085"}>From</span>
                     <FiatValue fiatValue={fiatValueInput} />
                 </div>
                 <div className={"flex-s-between"}>
@@ -67,7 +65,7 @@ export default function SwapModalHeader({ trade, allowedSlippage, recipient, sho
             </SwapModalHeaderArrowWrapper>
             <Card isDark classes={"p-1 br-12 mv-05"}>
                 <div className={"flex-s-between fs-085 mb-05"}>
-                    <Trans>To</Trans>
+                    To
                     <FiatValue fiatValue={fiatValueOutput} priceImpact={computeFiatValuePriceImpact(fiatValueInput, fiatValueOutput)} />
                 </div>
                 <div className={"flex-s-between"}>
@@ -87,7 +85,7 @@ export default function SwapModalHeader({ trade, allowedSlippage, recipient, sho
                 </div>
             </Card>
             <div className={"flex-s-between c-p fs-085 ph-05"}>
-                <Trans>Price</Trans>
+                Price
                 <TradePrice price={trade.executionPrice} showInverted={showInverted} setShowInverted={setShowInverted} />
             </div>
 
@@ -100,9 +98,7 @@ export default function SwapModalHeader({ trade, allowedSlippage, recipient, sho
                     <RowBetween>
                         <RowFixed>
                             <AlertTriangle size={20} style={{ marginRight: "8px", minWidth: 24 }} />
-                            <TYPE.main color={"var(--primary)"}>
-                                <Trans>Price Updated</Trans>
-                            </TYPE.main>
+                            <TYPE.main color={"var(--primary)"}>Price Updated</TYPE.main>
                         </RowFixed>
                         <ButtonPrimary
                             style={{
@@ -113,7 +109,7 @@ export default function SwapModalHeader({ trade, allowedSlippage, recipient, sho
                             }}
                             onClick={onAcceptChanges}
                         >
-                            <Trans>Accept</Trans>
+                            Accept
                         </ButtonPrimary>
                     </RowBetween>
                 </SwapShowAcceptChanges>
@@ -122,31 +118,25 @@ export default function SwapModalHeader({ trade, allowedSlippage, recipient, sho
             <div>
                 {trade.tradeType === TradeType.EXACT_INPUT ? (
                     <div className={"c-p fs-085 i l mt-1"}>
-                        <Trans>
-                            Output is estimated. You will receive at least{" "}
-                            <b>
-                                {trade.minimumAmountOut(allowedSlippage).toSignificant(6)} {trade.outputAmount.currency.symbol}
-                            </b>{" "}
-                            or the transaction will revert.
-                        </Trans>
+                        Output is estimated. You will receive at least{" "}
+                        <b>
+                            {trade.minimumAmountOut(allowedSlippage).toSignificant(6)} {trade.outputAmount.currency.symbol}
+                        </b>{" "}
+                        or the transaction will revert.
                     </div>
                 ) : (
                     <div className={"c-p fs-085 i l mt-1"}>
-                        <Trans>
-                            Input is estimated. You will sell at most{" "}
-                            <b>
-                                {trade.maximumAmountIn(allowedSlippage).toSignificant(6)} {trade.inputAmount.currency.symbol}
-                            </b>{" "}
-                            or the transaction will revert.
-                        </Trans>
+                        Input is estimated. You will sell at most{" "}
+                        <b>
+                            {trade.maximumAmountIn(allowedSlippage).toSignificant(6)} {trade.inputAmount.currency.symbol}
+                        </b>{" "}
+                        or the transaction will revert.
                     </div>
                 )}
             </div>
             {recipient !== null ? (
                 <div className={"c-p"}>
-                    <Trans>
-                        Output will be sent to <b title={recipient}>{isAddress(recipient) ? shortenAddress(recipient) : recipient}</b>
-                    </Trans>
+                    Output will be sent to <b title={recipient}>{isAddress(recipient) ? shortenAddress(recipient) : recipient}</b>
                 </div>
             ) : null}
         </div>

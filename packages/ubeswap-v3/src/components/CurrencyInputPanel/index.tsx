@@ -13,6 +13,8 @@ import Loader from "../Loader";
 import useUSDCPrice from "../../hooks/useUSDCPrice";
 import { Aligner, AutoColumnStyled, Container, CurrencySelect, FiatRow, FixedContainer, InputPanel, InputRow, MaxButton, NumericalInputStyled, StyledTokenName } from "./styled";
 import { WrappedCurrency } from "../../models/types";
+import { CurrencySearchModal } from "ubeswap-components";
+import { Token as UbeswapToken, ChainId } from "@ubeswap/sdk";
 
 interface CurrencyInputPanelProps {
     value: string;
@@ -20,6 +22,7 @@ interface CurrencyInputPanelProps {
     onMax?: () => void;
     showMaxButton: boolean;
     label?: ReactNode;
+    onCurrencySelect?: (currency: Currency) => void;
     currency?: WrappedCurrency | null;
     hideBalance?: boolean;
     hideInput?: boolean;
@@ -46,6 +49,7 @@ export default function CurrencyInputPanel({
     onUserInput,
     onMax,
     showMaxButton,
+    onCurrencySelect,
     currency,
     otherCurrency,
     id,
@@ -96,6 +100,13 @@ export default function CurrencyInputPanel({
         return +balance.toFixed(3);
     }, [balance]);
 
+    const selectedCurrency: UbeswapToken | undefined =
+        currency?.wrapped && new UbeswapToken(currency.wrapped.chainId as ChainId, currency.wrapped.address!, currency.wrapped.decimals!, currency.wrapped.symbol, currency.wrapped.name);
+
+    const otherSelectedCurrency: UbeswapToken | undefined =
+        otherCurrency?.wrapped &&
+        new UbeswapToken(otherCurrency.wrapped.chainId as ChainId, otherCurrency.wrapped.address!, otherCurrency.wrapped.decimals!, otherCurrency.wrapped.symbol, otherCurrency.wrapped.name);
+
     return (
         <InputPanel id={id} hideInput={hideInput} {...rest}>
             {locked && (
@@ -122,7 +133,7 @@ export default function CurrencyInputPanel({
                 <InputRow
                     hideCurrency={hideCurrency}
                     style={hideInput ? { borderRadius: "8px", padding: `${page === "pool" ? "0" : ""}` } : { padding: `${page === "pool" ? "0" : ""}` }}
-                    selected={false}
+                    selected={!onCurrencySelect}
                 >
                     {!hideCurrency && (
                         <CurrencySelect
@@ -134,9 +145,9 @@ export default function CurrencyInputPanel({
                             swap={swap}
                             disabled={shallow && page !== "addLiq"}
                             onClick={() => {
-                                // if (onCurrencySelect) {
-                                //     setModalOpen(true);
-                                // }
+                                if (onCurrencySelect) {
+                                    setModalOpen(true);
+                                }
                             }}
                         >
                             <Aligner centered={centered} title={balance ? balance.toSignificant(4) : ""}>
@@ -219,6 +230,19 @@ export default function CurrencyInputPanel({
                     )
                 )}
             </Container>
+            {onCurrencySelect && (
+                <CurrencySearchModal
+                    isOpen={modalOpen}
+                    onDismiss={handleDismissSearch}
+                    onCurrencySelect={(value: UbeswapToken) => {
+                        const currency: Token = new Token(value.chainId, value.address, value.decimals, value.symbol, value.name);
+                        onCurrencySelect(currency);
+                    }}
+                    selectedCurrency={selectedCurrency}
+                    otherSelectedCurrency={otherSelectedCurrency}
+                    showCommonBases={showCommonBases}
+                />
+            )}
         </InputPanel>
     );
 }

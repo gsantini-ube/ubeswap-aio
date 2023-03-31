@@ -6,9 +6,9 @@ import { useTransactionAdder } from "../state/transactions/hooks";
 import { useCurrencyBalance } from "../state/wallet/hooks";
 import { useActiveWeb3React } from "./web3";
 import { useWETHContract } from "./useContract";
-import { t } from "@lingui/macro";
+// import { t } from "@lingui/macro";
 
-import AlgebraConfig from "../../algebra.config";
+import AlgebraConfig from "../algebra.config";
 
 export enum WrapType {
     NOT_APPLICABLE,
@@ -57,13 +57,13 @@ export default function useWrapCallback(
                         ? async () => {
                               try {
                                   const txReceipt = await wethContract.deposit({ value: `0x${inputAmount.quotient.toString(16)}` });
-                                  addTransaction(txReceipt, { summary: t`Wrap ${inputAmount.toSignificant(6)} ${chainSymbol} to W${chainSymbol}` });
+                                  addTransaction(txReceipt, { summary: `Wrap ${inputAmount.toSignificant(6)} ${chainSymbol} to W${chainSymbol}` });
                               } catch (error) {
                                   console.error("Could not deposit", error);
                               }
                           }
                         : undefined,
-                inputError: sufficientBalance ? undefined : hasInputAmount ? t`Insufficient ${chainSymbol} balance` : t`Enter ${chainSymbol} amount`,
+                inputError: sufficientBalance ? undefined : hasInputAmount ? `Insufficient ${chainSymbol} balance` : `Enter ${chainSymbol} amount`,
             };
         } else if (weth.equals(inputCurrency) && outputCurrency.isNative) {
             return {
@@ -73,13 +73,13 @@ export default function useWrapCallback(
                         ? async () => {
                               try {
                                   const txReceipt = await wethContract.withdraw(`0x${inputAmount.quotient.toString(16)}`);
-                                  addTransaction(txReceipt, { summary: t`Unwrap ${inputAmount.toSignificant(6)} W${chainSymbol} to ${chainSymbol}` });
+                                  addTransaction(txReceipt, { summary: `Unwrap ${inputAmount.toSignificant(6)} W${chainSymbol} to ${chainSymbol}` });
                               } catch (error) {
                                   console.error("Could not withdraw", error);
                               }
                           }
                         : undefined,
-                inputError: sufficientBalance ? undefined : hasInputAmount ? t`Insufficient W${chainSymbol} balance` : t`Enter W${chainSymbol} amount`,
+                inputError: sufficientBalance ? undefined : hasInputAmount ? `Insufficient W${chainSymbol} balance` : `Enter W${chainSymbol} amount`,
             };
         } else {
             return NOT_APPLICABLE;

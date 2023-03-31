@@ -1,4 +1,3 @@
-import { Trans } from "@lingui/macro";
 import { Currency, Percent, TradeType } from "@uniswap/sdk-core";
 import { Trade as V2Trade } from "@uniswap/v2-sdk";
 import { Trade as V3Trade } from "../../lib/src";
@@ -69,18 +68,16 @@ export default function ConfirmSwapModal({
     }, [onConfirm, showAcceptChanges, swapErrorMessage, trade]);
 
     // text to show while loading
-    const pendingText = (
-        <Trans>
-            Swapping {trade?.inputAmount?.toSignificant(6)} {trade?.inputAmount?.currency?.symbol} for {trade?.outputAmount?.toSignificant(6)} {trade?.outputAmount?.currency?.symbol}
-        </Trans>
-    );
+    const pendingText = `Swapping ${trade?.inputAmount?.toSignificant(6)} ${trade?.inputAmount?.currency?.symbol} for ${trade?.outputAmount?.toSignificant(6)} ${
+        trade?.outputAmount?.currency?.symbol
+    }`;
 
     const confirmationContent = useCallback(
         () =>
             swapErrorMessage ? (
                 <TransactionErrorContent onDismiss={onDismiss} message={swapErrorMessage} />
             ) : (
-                <ConfirmationModalContent title={<Trans>Confirm Swap</Trans>} onDismiss={onDismiss} topContent={modalHeader} bottomContent={modalBottom} />
+                <ConfirmationModalContent title={"Confirm Swap"} onDismiss={onDismiss} topContent={modalHeader} bottomContent={modalBottom} />
             ),
         [onDismiss, modalBottom, modalHeader, swapErrorMessage]
     );

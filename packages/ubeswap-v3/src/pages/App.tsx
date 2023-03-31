@@ -24,6 +24,8 @@ import AlgebraConfig from "../algebra.config";
 import styled from "styled-components/macro";
 import PoolBackground from "../assets/images/background-pool.jpg";
 import FarmBackground from "../assets/images/background-farm.jpg";
+import Swap from "./Swap";
+import { RedirectToSwap } from "./Swap/redirects";
 
 const AddLiquidity = React.lazy(() => import("./AddLiquidity"));
 const FarmingPage = React.lazy(() => import("./Farming/FarmingPage"));
@@ -131,8 +133,8 @@ export default function App() {
                                         <Route strict path="/farm" component={FarmingPage} />
 
                                         {/* <Route exact strict path="/send" component={RedirectPathToSwapOnly} /> */}
-                                        {/* <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} /> */}
-                                        {/* <Route exact strict path="/swap" component={Swap} /> */}
+                                        <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
+                                        <Route exact strict path="/swap" component={Swap} />
 
                                         <Route exact strict path="/pool" component={PoolPage} />
                                         <Route exact strict path="/pool/:tokenId" component={PositionPage} />

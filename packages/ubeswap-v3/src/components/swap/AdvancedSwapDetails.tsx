@@ -1,4 +1,4 @@
-import { Trans } from "@lingui/macro";
+// import { Trans } from "@lingui/macro";
 import { Currency, Percent, TradeType } from "@uniswap/sdk-core";
 import { Trade as V2Trade } from "@uniswap/v2-sdk";
 import { Trade as V3Trade } from "../../lib/src";
@@ -33,7 +33,7 @@ export function AdvancedSwapDetails({ trade, allowedSlippage }: AdvancedSwapDeta
             <RowBetween>
                 <RowFixed>
                     <TYPE.black fontSize={12} fontWeight={400} color={theme.text2}>
-                        <Trans>Liquidity Provider Fee</Trans>
+                        Liquidity Provider Fee
                     </TYPE.black>
                 </RowFixed>
                 <TYPE.black textAlign="right" fontSize={12} color={theme.text1}>
@@ -44,7 +44,7 @@ export function AdvancedSwapDetails({ trade, allowedSlippage }: AdvancedSwapDeta
             <RowBetween>
                 <RowFixed>
                     <TYPE.black fontSize={12} fontWeight={400} color={theme.text2}>
-                        <Trans>Route</Trans>
+                        Route
                     </TYPE.black>
                 </RowFixed>
                 <TYPE.black textAlign="right" fontSize={12} color={theme.text1}>
@@ -55,7 +55,7 @@ export function AdvancedSwapDetails({ trade, allowedSlippage }: AdvancedSwapDeta
             <RowBetween>
                 <RowFixed>
                     <TYPE.black fontSize={12} fontWeight={400} color={theme.text2}>
-                        <Trans>Price Impact</Trans>
+                        Price Impact
                     </TYPE.black>
                 </RowFixed>
                 <TYPE.black textAlign="right" fontSize={12} color={theme.text1}>
@@ -66,7 +66,7 @@ export function AdvancedSwapDetails({ trade, allowedSlippage }: AdvancedSwapDeta
             <RowBetween>
                 <RowFixed>
                     <TYPE.black fontSize={12} fontWeight={400} color={theme.text2}>
-                        {trade.tradeType === TradeType.EXACT_INPUT ? <Trans>Minimum received</Trans> : <Trans>Maximum sent</Trans>}
+                        {trade.tradeType === TradeType.EXACT_INPUT ? "Minimum received" : "Maximum sent"}
                     </TYPE.black>
                 </RowFixed>
                 <TYPE.black textAlign="right" fontSize={12} color={theme.text1}>
@@ -79,7 +79,7 @@ export function AdvancedSwapDetails({ trade, allowedSlippage }: AdvancedSwapDeta
             <RowBetween>
                 <RowFixed>
                     <TYPE.black fontSize={12} fontWeight={400} color={theme.text2}>
-                        <Trans>Slippage tolerance</Trans>
+                        Slippage tolerance
                     </TYPE.black>
                 </RowFixed>
                 <TYPE.black textAlign="right" fontSize={12} color={theme.text1}>
