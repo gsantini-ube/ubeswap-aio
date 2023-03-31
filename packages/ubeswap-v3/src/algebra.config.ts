@@ -15,7 +15,7 @@ export default {
             logo: "https://raw.githubusercontent.com/ubeswap/default-token-list/master/assets/asset_CELO.png",
         },
         rpcURL: "https://forno.celo.org",
-        blockExplorerURL: "https://explorer.celo.org",
+        blockExplorerURL: "https://celoscan.io",
     },
 
     // Token addresses should be in lowercase
