@@ -556,7 +556,7 @@ export default function Header({
               </StyledSubMenuItem>
               <StyledSubMenuItem>
                 <StyledNavLink
-                  className="disabled"
+                  // className="disabled"
                   id={`stake-drawer-nav-link`}
                   to={'/farm'}
                   onClick={(e) => {
